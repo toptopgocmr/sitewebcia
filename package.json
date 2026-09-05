@@ -1,0 +1,12 @@
+{
+  "name": "sitewebcia",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site vitrine CIA - Credit International d'Accompagnement",
+  "scripts": {
+    "start": "serve -s . -l ${PORT:-3000}"
+  },
+  "dependencies": {
+    "serve": "^14.2.1"
+  }
+}
