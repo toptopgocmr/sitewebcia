@@ -544,10 +544,10 @@
       <h2>Quelques chiffres de votre institution</h2>
     </div>
     <div class="stats-grid">
-      <div class="stat-item"><div class="stat-icon">👥</div><div class="num">1 000+</div><div class="label">Clients particuliers</div></div>
-      <div class="stat-item"><div class="stat-icon">🏢</div><div class="num">100+</div><div class="label">Clients professionnels & entreprises</div></div>
-      <div class="stat-item"><div class="stat-icon">📍</div><div class="num">2</div><div class="label">Agences au Congo</div></div>
-      <div class="stat-item"><div class="stat-icon">💳</div><div class="num">50</div><div class="label">Points de vente</div></div>
+      <div class="stat-item"><div class="stat-icon">👥</div><div class="num" data-target="1000" data-suffix="+">0</div><div class="label">Clients particuliers</div></div>
+      <div class="stat-item"><div class="stat-icon">🏢</div><div class="num" data-target="100" data-suffix="+">0</div><div class="label">Clients professionnels & entreprises</div></div>
+      <div class="stat-item"><div class="stat-icon">📍</div><div class="num" data-target="2" data-suffix="">0</div><div class="label">Agences au Congo</div></div>
+      <div class="stat-item"><div class="stat-icon">💳</div><div class="num" data-target="50" data-suffix="">0</div><div class="label">Points de vente</div></div>
     </div>
   </div>
 </section>
@@ -1147,6 +1147,51 @@
   }
 
   restart();
+})();
+</script>
+
+<!-- ===================== ANIMATION CHIFFRES CLÉS ===================== -->
+<script>
+(function(){
+  var nums = document.querySelectorAll('.stat-item .num[data-target]');
+  if(!nums.length) return;
+
+  function formatNumber(n){
+    return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  }
+
+  function animateCount(el){
+    var target = parseInt(el.getAttribute('data-target'), 10) || 0;
+    var suffix = el.getAttribute('data-suffix') || '';
+    var duration = 1600;
+    var startTime = null;
+
+    function step(timestamp){
+      if(!startTime) startTime = timestamp;
+      var progress = Math.min((timestamp - startTime) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      var current = Math.floor(eased * target);
+      el.textContent = formatNumber(current) + suffix;
+      if(progress < 1){
+        requestAnimationFrame(step);
+      } else {
+        el.textContent = formatNumber(target) + suffix;
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
+  var animated = new WeakSet();
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting && !animated.has(entry.target)){
+        animated.add(entry.target);
+        animateCount(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+
+  nums.forEach(function(el){ observer.observe(el); });
 })();
 </script>
 
