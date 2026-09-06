@@ -44,17 +44,22 @@
   .logo-text .big span{color:var(--red);}
   .logo-text .small{font-size:0.58rem; letter-spacing:2px; color:var(--grey-text); font-weight:600; text-transform:uppercase;}
   nav.links{display:flex; gap:30px; font-weight:600; font-size:0.95rem; color:#33405c; align-items:center;}
-  nav.links a.active{color:var(--navy); border-bottom:2px solid var(--navy); padding-bottom:4px;}
-  .has-dropdown{position:relative; cursor:pointer; display:flex; align-items:center; gap:5px;}
-  .has-dropdown .caret{font-size:0.65rem; transition:transform .2s;}
+  nav.links a{border-bottom:2px solid transparent; padding-bottom:4px; transition:color .2s ease, border-color .2s ease;}
+  nav.links a:hover{color:var(--navy); border-bottom-color:var(--navy);}
+  nav.links a.active{color:var(--navy); border-bottom-color:var(--navy);}
+  .has-dropdown{position:relative; cursor:pointer;}
+  .dropdown-label-row{display:flex; align-items:center; gap:5px;}
+  .dropdown-label-row a{border-bottom:none !important;}
+  .has-dropdown .caret{font-size:0.65rem; transition:transform .2s; color:#33405c;}
   .has-dropdown:hover .caret{transform:rotate(180deg);}
   .dropdown{
     position:absolute; top:calc(100% + 18px); left:-20px; background:#fff; border:1px solid var(--border);
     border-radius:10px; box-shadow:0 18px 40px rgba(20,30,70,0.12); padding:10px; width:230px;
     opacity:0; visibility:hidden; transform:translateY(8px); transition:all .18s ease; z-index:90;
   }
-  .has-dropdown:hover .dropdown{opacity:1; visibility:visible; transform:translateY(0);}
-  .dropdown a{display:block; padding:10px 12px; border-radius:7px; font-size:0.9rem; color:#33405c; font-weight:600;}
+  .has-dropdown:hover .dropdown, .has-dropdown.open .dropdown{opacity:1; visibility:visible; transform:translateY(0);}
+  .dropdown a{display:block; padding:10px 12px; border-radius:7px; font-size:0.9rem; color:#33405c; font-weight:600; border-bottom:none !important;}
+  .dropdown a:hover{border-bottom:none !important; background:#f3f5fa;}
   .dropdown a:hover{background:var(--lightblue); color:var(--navy);}
   .burger{display:none; font-size:1.6rem; cursor:pointer; background:none; border:none; color:inherit; line-height:1; padding:4px;}
   @media(max-width:880px){
@@ -68,7 +73,7 @@
     nav.links a{padding:14px 4px; border-bottom:1px solid var(--border);}
     nav.links a.active{border-bottom:1px solid var(--border);}
     .has-dropdown{flex-direction:column; align-items:stretch; padding:14px 4px 0; border-bottom:1px solid var(--border);}
-    .has-dropdown span{display:flex; align-items:center; justify-content:space-between; padding-bottom:14px;}
+    .has-dropdown .dropdown-label-row{display:flex; align-items:center; justify-content:space-between; padding-bottom:14px;}
     .dropdown{
       position:static; opacity:1; visibility:visible; transform:none; box-shadow:none;
       border:none; width:auto; padding:0 0 6px; display:none;
@@ -213,6 +218,19 @@
   .diff-card:nth-child(even){border-top-color:var(--navy);}
   .diff-card h4{font-size:1.05rem; font-weight:800; color:#151b2e; margin-bottom:8px;}
   .diff-card p{font-size:0.9rem; color:var(--grey-text);}
+  .product-cards{display:grid; grid-template-columns:repeat(2,1fr); gap:24px; margin-top:8px;}
+  @media(max-width:760px){ .product-cards{grid-template-columns:1fr;} }
+  .product-card{background:#fff; border:1px solid var(--border); border-radius:16px; padding:30px; border-top:4px solid var(--red); transition:transform .25s ease, box-shadow .25s ease;}
+  .product-card:nth-child(even){border-top-color:var(--navy);}
+  .product-card:hover{transform:translateY(-6px); box-shadow:0 20px 40px rgba(20,30,70,0.10);}
+  .product-card h3{font-size:1.1rem; font-weight:800; color:#151b2e; margin-bottom:10px;}
+  .product-card .pc-desc{font-size:0.9rem; color:var(--grey-text); margin-bottom:12px;}
+  .product-card .pc-group{margin-top:14px;}
+  .product-card .pc-group-title{font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:0.5px; color:#33405c; margin-bottom:8px;}
+  .product-card ul{list-style:none; padding:0; margin:0;}
+  .product-card ul li{font-size:0.88rem; color:#33405c; padding:4px 0 4px 22px; position:relative;}
+  .product-card ul li::before{content:"\2713"; position:absolute; left:0; color:var(--red); font-weight:700;}
+  .product-card:nth-child(even) ul li::before{color:var(--navy);}
 
   /* PARTNERS MARQUEE (auto-scrolling logo strip) */
   .partners-marquee{position:relative; overflow:hidden; padding:6px 0; -webkit-mask-image:linear-gradient(90deg, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%); mask-image:linear-gradient(90deg, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%);}
@@ -359,6 +377,10 @@
 
   /* Anchors offset so sticky header doesn't cover section titles */
   section[id]{scroll-margin-top:90px;}
+  .nav-actions{display:flex; align-items:center; gap:12px;}
+  .agences-btn{display:flex; align-items:center; gap:7px; background:var(--navy); color:#fff; border:none; padding:10px 16px; border-radius:24px; font-weight:700; font-size:0.85rem; cursor:pointer; transition:background .2s ease;}
+  .agences-btn:hover{background:var(--navy-dark);}
+  @media(max-width:880px){ .agences-btn span{display:none;} .agences-btn{padding:10px; border-radius:50%;} }
 </style>
 <style>
   .info-note{background:#fff8e6; border:1px solid #f1dfa8; color:#7a5b00; font-size:0.85rem; border-radius:10px; padding:14px 18px; margin-bottom:34px;}
@@ -394,14 +416,32 @@
     </a>
     <nav class="links" id="mainNavLinks">
       <a href="index.html" data-page="accueil">Accueil</a>
-      <a href="a-propos.html" data-page="a-propos">À propos</a>
+      <div class="has-dropdown" id="aproposDropdown">
+        <div class="dropdown-label-row">
+          <a href="a-propos.html" data-page="a-propos">À propos</a>
+          <span class="caret">▾</span>
+        </div>
+        <div class="dropdown">
+          <a href="a-propos.html">Qui sommes-nous ?</a>
+          <a href="a-propos.html#valeurs">Nos valeurs</a>
+          <a href="a-propos.html#nous-sommes">Nous sommes</a>
+          <a href="a-propos.html#partenaires">Nos partenariats</a>
+          <a href="a-propos.html#rejoignez-nous">Rejoignez-nous</a>
+        </div>
+      </div>
       <a href="entreprises.html" data-page="entreprises">Entreprises</a>
       <a href="particuliers.html" data-page="particuliers">Particuliers</a>
       <a href="contact.html" data-page="contact">Contact</a>
       <a href="nos-agences.html" data-page="nos-agences">Nos Agences</a>
       <a href="rse.html" data-page="rse">RSE</a>
     </nav>
-    <button type="button" class="burger" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mainNavLinks">☰</button>
+    <div class="nav-actions">
+      <button type="button" class="agences-btn" id="agencesToggle" aria-label="Nos agences" aria-expanded="false" aria-controls="agencesPanel">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.5 7-11.5A7 7 0 0 0 5 9.5C5 14.5 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/></svg>
+        <span>Nos Agences</span>
+      </button>
+      <button type="button" class="burger" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mainNavLinks">☰</button>
+    </div>
   </div>
 </header>
 
@@ -536,14 +576,14 @@
   });
   var toggle = document.getElementById('menuToggle');
   var nav = document.getElementById('mainNavLinks');
-  var servicesDropdown = document.getElementById('servicesDropdown');
+  var aproposDropdown = document.getElementById('aproposDropdown');
   if(!toggle || !nav) return;
 
   function closeMenu(){
     nav.classList.remove('open');
     toggle.setAttribute('aria-expanded', 'false');
     toggle.textContent = '☰';
-    if(servicesDropdown) servicesDropdown.classList.remove('open');
+    if(aproposDropdown) aproposDropdown.classList.remove('open');
   }
 
   function openMenu(){
@@ -556,16 +596,20 @@
     if(nav.classList.contains('open')){ closeMenu(); } else { openMenu(); }
   });
 
-  if(servicesDropdown){
-    var servicesLabel = servicesDropdown.querySelector('span');
-    if(servicesLabel){
-      servicesLabel.addEventListener('click', function(e){
-        if(window.innerWidth <= 880){
-          e.preventDefault();
-          servicesDropdown.classList.toggle('open');
-        }
+  if(aproposDropdown){
+    var aproposCaret = aproposDropdown.querySelector('.caret');
+    if(aproposCaret){
+      aproposCaret.addEventListener('click', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        aproposDropdown.classList.toggle('open');
       });
     }
+    document.addEventListener('click', function(e){
+      if(!aproposDropdown.contains(e.target)){
+        aproposDropdown.classList.remove('open');
+      }
+    });
   }
 
   nav.querySelectorAll('a').forEach(function(link){
@@ -577,6 +621,89 @@
   });
 })();
 </script>
+<!-- ===================== PANNEAU NOS AGENCES ===================== -->
+<style>
+  #agencesOverlay{position:fixed; inset:0; background:rgba(15,20,40,0.55); z-index:1000; opacity:0; visibility:hidden; transition:opacity .25s ease;}
+  #agencesOverlay.open{opacity:1; visibility:visible;}
+  #agencesPanel{position:fixed; top:0; right:0; height:100%; width:380px; max-width:88vw; background:#fff; z-index:1001; box-shadow:-16px 0 50px rgba(20,30,70,0.25); transform:translateX(100%); transition:transform .3s ease; overflow-y:auto; padding:26px 24px;}
+  #agencesPanel.open{transform:translateX(0);}
+  #agencesClose{position:absolute; top:18px; right:18px; background:none; border:none; font-size:1.3rem; cursor:pointer; color:#33405c; line-height:1;}
+  .agences-panel-header{text-align:center; padding:20px 10px 26px; border-bottom:1px solid var(--border); margin-bottom:6px;}
+  .agences-panel-logo{width:56px; height:56px; object-fit:contain; margin:0 auto 14px;}
+  .agences-panel-header h3{font-size:1.02rem; font-weight:800; color:#151b2e; text-transform:uppercase; letter-spacing:0.3px;}
+  .agences-panel-sub{color:var(--grey-text); font-size:0.85rem; margin-top:4px;}
+  .agences-acc-item{border-bottom:1px solid var(--border);}
+  .agences-acc-trigger{width:100%; background:none; border:none; text-align:left; padding:16px 4px; font-weight:800; font-size:0.85rem; letter-spacing:0.3px; text-transform:uppercase; color:var(--navy); display:flex; align-items:center; justify-content:space-between; cursor:pointer; font-family:inherit;}
+  .agences-acc-trigger .chev{transition:transform .2s ease; font-size:1.1rem;}
+  .agences-acc-item.open .agences-acc-trigger .chev{transform:rotate(90deg);}
+  .agences-acc-body{max-height:0; overflow:hidden; transition:max-height .3s ease;}
+  .agences-acc-item.open .agences-acc-body{max-height:280px;}
+  .agences-loc{padding:0 4px 16px; font-size:0.85rem; color:var(--grey-text); line-height:1.6;}
+  .agences-loc a{color:var(--red); font-weight:700; border-bottom:none !important;}
+  .agences-panel-link{display:block; text-align:center; margin-top:22px; font-weight:800; color:var(--red); border-bottom:none !important;}
+</style>
+
+<div id="agencesOverlay"></div>
+<aside id="agencesPanel" aria-label="Nos agences">
+  <button type="button" id="agencesClose" aria-label="Fermer">✕</button>
+  <div class="agences-panel-header">
+    <img src="assets/cia-icon-mark.png" alt="CIA" class="agences-panel-logo">
+    <h3>Retrouvez CIA près de chez vous</h3>
+    <p class="agences-panel-sub">Contactez votre agence pour connaître ses horaires</p>
+  </div>
+  <div class="agences-accordion">
+    <div class="agences-acc-item">
+      <button type="button" class="agences-acc-trigger">Agences de Brazzaville <span class="chev">›</span></button>
+      <div class="agences-acc-body">
+        <div class="agences-loc"><strong>Plateaux des 15 ans</strong><br>Brazzaville<br><a href="tel:+242052061111">(+242) 05 206 11 11</a></div>
+      </div>
+    </div>
+    <div class="agences-acc-item">
+      <button type="button" class="agences-acc-trigger">Agences de Pointe-Noire <span class="chev">›</span></button>
+      <div class="agences-acc-body">
+        <div class="agences-loc"><strong>Rond-point Songolo</strong><br>Pointe-Noire<br><a href="tel:+242052061111">(+242) 05 206 11 11</a></div>
+        <div class="agences-loc"><strong>Port Autonome</strong><br>Pointe-Noire<br><a href="tel:+242068205757">(+242) 06 820 57 57</a></div>
+      </div>
+    </div>
+  </div>
+  <a href="nos-agences.html" class="agences-panel-link">Voir la page Nos Agences →</a>
+</aside>
+
+<script>
+(function(){
+  var toggle = document.getElementById('agencesToggle');
+  var panel = document.getElementById('agencesPanel');
+  var overlay = document.getElementById('agencesOverlay');
+  var closeBtn = document.getElementById('agencesClose');
+  if(!toggle || !panel || !overlay) return;
+
+  function openPanel(){
+    panel.classList.add('open');
+    overlay.classList.add('open');
+    toggle.setAttribute('aria-expanded', 'true');
+  }
+  function closePanel(){
+    panel.classList.remove('open');
+    overlay.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+  toggle.addEventListener('click', function(){
+    if(panel.classList.contains('open')){ closePanel(); } else { openPanel(); }
+  });
+  if(closeBtn) closeBtn.addEventListener('click', closePanel);
+  overlay.addEventListener('click', closePanel);
+
+  panel.querySelectorAll('.agences-acc-trigger').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.parentElement;
+      var wasOpen = item.classList.contains('open');
+      panel.querySelectorAll('.agences-acc-item').forEach(function(i){ i.classList.remove('open'); });
+      if(!wasOpen) item.classList.add('open');
+    });
+  });
+})();
+</script>
+
 <!-- ===================== CHATBOT ASSISTANT CIA ===================== -->
 <style>
   #ciaChatToggle{position:fixed; right:22px; bottom:22px; width:60px; height:60px; border-radius:50%; background:var(--navy); color:#fff; border:none; box-shadow:0 10px 26px rgba(20,30,70,0.35); cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:999; transition:transform .2s ease, background .2s ease;}
