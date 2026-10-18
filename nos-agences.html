@@ -684,9 +684,9 @@
   if(window.L && document.getElementById('agMap')){
     map = L.map('agMap', { scrollWheelZoom:false, zoomControl:true });
     map.fitBounds(L.latLngBounds(AGENCES.map(function(a){ return [a.lat, a.lng]; })), {padding:[60,60], maxZoom:13});
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-      maxZoom:19, subdomains:'abcd',
-      attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom:19,
+      attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'
     }).addTo(map);
     AGENCES.forEach(function(a){
       markers[a.id] = L.marker([a.lat, a.lng], { icon:pinIcon(false), title:a.name }).addTo(map).bindPopup(popupHtml(a));
