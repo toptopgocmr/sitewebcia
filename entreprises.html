@@ -808,67 +808,101 @@
   #ciaChatToggle.open .chat-icon{display:none;}
   #ciaChatToggle.open .close-icon{display:block;}
   #ciaChatBadge{position:absolute; top:-2px; right:-2px; width:14px; height:14px; border-radius:50%; background:var(--red); border:2px solid #fff;}
+  #ciaChatHint{position:fixed; right:94px; bottom:34px; background:#fff; color:#1a2333; font-size:0.82rem; font-weight:600; padding:10px 14px; border-radius:12px 12px 4px 12px; box-shadow:0 10px 30px rgba(20,30,70,0.18); z-index:998; max-width:220px; opacity:0; transform:translateY(6px); transition:all .3s ease; pointer-events:none;}
+  #ciaChatHint.show{opacity:1; transform:translateY(0); pointer-events:auto; cursor:pointer;}
 
-  #ciaChatWindow{position:fixed; right:22px; bottom:92px; width:340px; max-width:calc(100vw - 32px); height:460px; max-height:calc(100vh - 140px); background:#fff; border-radius:16px; box-shadow:0 24px 60px rgba(20,30,70,0.28); display:flex; flex-direction:column; overflow:hidden; z-index:999; opacity:0; visibility:hidden; transform:translateY(16px); transition:all .22s ease;}
-  #ciaChatWindow.open{opacity:1; visibility:visible; transform:translateY(0);}
+  #ciaChatWindow{position:fixed; right:22px; bottom:94px; width:380px; max-width:calc(100vw - 32px); height:580px; max-height:calc(100vh - 120px); background:#fff; border-radius:18px; box-shadow:0 24px 60px rgba(20,30,70,0.28); display:flex; flex-direction:column; overflow:hidden; z-index:999; opacity:0; visibility:hidden; transform:translateY(16px) scale(.98); transform-origin:bottom right; transition:all .22s ease;}
+  #ciaChatWindow.open{opacity:1; visibility:visible; transform:translateY(0) scale(1);}
 
-  #ciaChatHeader{background:var(--navy); color:#fff; padding:16px 18px; display:flex; align-items:center; gap:10px;}
-  #ciaChatHeader .avatar{width:34px; height:34px; border-radius:50%; background:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
-  #ciaChatHeader .avatar img{width:22px; height:22px; object-fit:contain;}
-  #ciaChatHeader .title{font-weight:800; font-size:0.95rem;}
+  #ciaChatHeader{background:linear-gradient(120deg,var(--navy),var(--navy-dark)); color:#fff; padding:14px 14px 14px 16px; display:flex; align-items:center; gap:11px;}
+  #ciaChatHeader .avatar{width:38px; height:38px; border-radius:50%; background:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+  #ciaChatHeader .avatar img{width:24px; height:24px; object-fit:contain;}
+  #ciaChatHeader .meta{flex:1; min-width:0;}
+  #ciaChatHeader .title{font-weight:800; font-size:0.98rem;}
   #ciaChatHeader .subtitle{font-size:0.72rem; color:#dfe7fb; display:flex; align-items:center; gap:5px;}
   #ciaChatHeader .subtitle .dot{width:7px; height:7px; border-radius:50%; background:#3ddc84; display:inline-block;}
+  .cia-head-btn{width:32px; height:32px; border-radius:8px; border:none; background:rgba(255,255,255,0.14); color:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0; transition:background .15s ease;}
+  .cia-head-btn:hover{background:rgba(255,255,255,0.28);}
+  .cia-head-btn svg{width:16px; height:16px;}
 
-  #ciaChatMessages{flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:10px; background:#f4f7fc;}
-  .cia-msg{max-width:82%; padding:10px 13px; border-radius:14px; font-size:0.86rem; line-height:1.45;}
-  .cia-msg.bot{align-self:flex-start; background:#fff; color:#1a2333; border:1px solid var(--border); border-bottom-left-radius:4px;}
-  .cia-msg.user{align-self:flex-end; background:var(--navy); color:#fff; border-bottom-right-radius:4px;}
+  #ciaChatMessages{flex:1; overflow-y:auto; padding:18px 14px 8px; display:flex; flex-direction:column; gap:12px; background:#f4f7fc; scroll-behavior:smooth;}
+  #ciaChatMessages::-webkit-scrollbar{width:6px;}
+  #ciaChatMessages::-webkit-scrollbar-thumb{background:#cdd6ea; border-radius:6px;}
+  .cia-row{display:flex; gap:8px; align-items:flex-end; animation:ciaIn .22s ease;}
+  .cia-row.user{justify-content:flex-end;}
+  .cia-row .mini{width:26px; height:26px; border-radius:50%; background:#fff; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-bottom:18px;}
+  .cia-row .mini img{width:15px; height:15px; object-fit:contain;}
+  .cia-row > div:last-child{max-width:82%;}
+  .cia-msg{padding:10px 13px; border-radius:14px; font-size:0.86rem; line-height:1.5; word-wrap:break-word;}
+  .cia-msg.bot{background:#fff; color:#1a2333; border:1px solid var(--border); border-bottom-left-radius:4px;}
+  .cia-msg.user{background:var(--navy); color:#fff; border-bottom-right-radius:4px;}
   .cia-msg a{color:var(--red); font-weight:700;}
-  .cia-msg.bot a{text-decoration:underline;}
+  .cia-msg .cia-cta{display:inline-flex; align-items:center; gap:6px; margin-top:9px; background:#eaf0fb; color:var(--navy); font-weight:700; font-size:0.8rem; padding:7px 12px; border-radius:8px; text-decoration:none;}
+  .cia-msg .cia-cta:hover{background:var(--navy); color:#fff;}
+  .cia-msg ul{margin:6px 0 0 18px; padding:0; list-style:disc;}
+  .cia-msg li{margin-bottom:3px;}
+  .cia-time{font-size:0.66rem; color:#8a96b3; margin-top:3px;}
+  .cia-row.user .cia-time{text-align:right;}
+  .cia-typing{display:inline-flex; gap:4px; padding:12px 14px;}
+  .cia-typing span{width:7px; height:7px; border-radius:50%; background:#9aa6c4; animation:ciaDot 1s infinite ease-in-out;}
+  .cia-typing span:nth-child(2){animation-delay:.15s;}
+  .cia-typing span:nth-child(3){animation-delay:.3s;}
+  #ciaTyping .mini{margin-bottom:0;}
+  @keyframes ciaDot{0%,80%,100%{transform:translateY(0); opacity:.5;} 40%{transform:translateY(-4px); opacity:1;}}
+  @keyframes ciaIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
 
-  #ciaChatQuick{display:flex; flex-wrap:wrap; gap:6px; padding:0 16px 10px; background:#f4f7fc;}
-  .cia-quick-btn{background:#fff; border:1px solid var(--border); color:var(--navy); font-size:0.74rem; font-weight:700; padding:7px 11px; border-radius:20px; cursor:pointer; transition:background .15s ease, color .15s ease;}
-  .cia-quick-btn:hover{background:var(--navy); color:#fff;}
+  #ciaChatQuick{display:flex; gap:6px; padding:10px 14px; background:#fff; border-top:1px solid var(--border); overflow-x:auto; scrollbar-width:none;}
+  #ciaChatQuick::-webkit-scrollbar{display:none;}
+  .cia-quick-btn{flex-shrink:0; background:#fff; border:1px solid #c9d4ee; color:var(--navy); font-size:0.76rem; font-weight:700; padding:7px 12px; border-radius:20px; cursor:pointer; white-space:nowrap; font-family:inherit; transition:background .15s ease, color .15s ease;}
+  .cia-quick-btn:hover{background:var(--navy); color:#fff; border-color:var(--navy);}
 
-  #ciaChatForm{display:flex; gap:8px; padding:12px; border-top:1px solid var(--border); background:#fff;}
-  #ciaChatInput{flex:1; border:1px solid var(--border); border-radius:20px; padding:10px 14px; font-size:0.85rem; outline:none; font-family:inherit;}
-  #ciaChatInput:focus{border-color:var(--navy);}
-  #ciaChatSend{background:var(--red); color:#fff; border:none; width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0; transition:background .15s ease;}
-  #ciaChatSend:hover{background:var(--navy);}
+  #ciaChatForm{display:flex; gap:8px; padding:4px 12px 8px; background:#fff;}
+  #ciaChatInput{flex:1; border:1px solid var(--border); border-radius:22px; padding:11px 15px; font-size:0.88rem; outline:none; font-family:inherit; background:#f7f9fd;}
+  #ciaChatInput:focus{border-color:var(--navy); background:#fff;}
+  #ciaChatSend{background:var(--red); color:#fff; border:none; width:42px; height:42px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0; transition:background .15s ease, opacity .15s ease;}
+  #ciaChatSend:disabled{opacity:.45; cursor:default;}
+  #ciaChatSend:not(:disabled):hover{background:var(--navy);}
+  #ciaChatFoot{display:flex; justify-content:space-between; align-items:center; padding:0 16px 10px; background:#fff; font-size:0.7rem; color:#8a96b3;}
+  #ciaChatFoot a{color:var(--navy); font-weight:700;}
 
   @media(max-width:480px){
-    #ciaChatWindow{right:16px; left:16px; width:auto; bottom:88px;}
+    #ciaChatWindow{right:0; left:0; bottom:0; top:0; width:100%; max-width:100%; height:100%; max-height:100%; border-radius:0;}
     #ciaChatToggle{right:16px; bottom:16px;}
+    #ciaChatToggle.open{display:none;}
+    #ciaChatHint{right:86px; bottom:26px;}
   }
 </style>
 
-<button type="button" id="ciaChatToggle" aria-label="Ouvrir l'assistant CIA" aria-expanded="false">
+<button type="button" id="ciaChatToggle" aria-label="Ouvrir l'assistant CIA" aria-expanded="false" aria-controls="ciaChatWindow">
   <span id="ciaChatBadge"></span>
   <svg class="chat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
   <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="M6 6l12 12"/></svg>
 </button>
+<div id="ciaChatHint">Une question ? Je suis là pour vous aider 👋</div>
 
 <div id="ciaChatWindow" role="dialog" aria-label="Assistant CIA">
   <div id="ciaChatHeader">
     <div class="avatar"><img src="assets/cia-icon-mark.png" alt="CIA"></div>
-    <div>
+    <div class="meta">
       <div class="title">Assistant CIA</div>
-      <div class="subtitle"><span class="dot"></span>En ligne</div>
+      <div class="subtitle"><span class="dot"></span>En ligne · répond instantanément</div>
     </div>
+    <button type="button" class="cia-head-btn" id="ciaChatReset" aria-label="Nouvelle conversation" title="Nouvelle conversation">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+    </button>
+    <button type="button" class="cia-head-btn" id="ciaChatClose" aria-label="Fermer" title="Fermer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="M6 6l12 12"/></svg>
+    </button>
   </div>
-  <div id="ciaChatMessages"></div>
-  <div id="ciaChatQuick">
-    <button type="button" class="cia-quick-btn" data-q="Devenir client">Devenir client</button>
-    <button type="button" class="cia-quick-btn" data-q="Nos agences">Nos agences</button>
-    <button type="button" class="cia-quick-btn" data-q="Transfert National">Transfert National</button>
-    <button type="button" class="cia-quick-btn" data-q="Contact">Contact</button>
-  </div>
+  <div id="ciaChatMessages" aria-live="polite"></div>
+  <div id="ciaChatQuick"></div>
   <form id="ciaChatForm">
-    <input type="text" id="ciaChatInput" placeholder="Écrivez votre message…" autocomplete="off">
-    <button type="submit" id="ciaChatSend" aria-label="Envoyer">
+    <input type="text" id="ciaChatInput" placeholder="Posez votre question…" autocomplete="off" maxlength="300">
+    <button type="submit" id="ciaChatSend" aria-label="Envoyer" disabled>
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7Z"/></svg>
     </button>
   </form>
+  <div id="ciaChatFoot"><span>Assistant automatique CIA</span><a href="tel:+242052061111">📞 Parler à un conseiller</a></div>
 </div>
 
 <script>
@@ -876,93 +910,231 @@
   var toggle = document.getElementById('ciaChatToggle');
   var win = document.getElementById('ciaChatWindow');
   var messages = document.getElementById('ciaChatMessages');
+  var quick = document.getElementById('ciaChatQuick');
   var form = document.getElementById('ciaChatForm');
   var input = document.getElementById('ciaChatInput');
+  var send = document.getElementById('ciaChatSend');
   var badge = document.getElementById('ciaChatBadge');
-  var quickButtons = document.querySelectorAll('.cia-quick-btn');
+  var hint = document.getElementById('ciaChatHint');
   if(!toggle || !win || !messages || !form || !input) return;
 
-  var opened = false;
+  var STORE = 'ciaChatHistory';
+  var history = [];
+  var busy = false;
+  var ICON = 'assets/cia-icon-mark.png';
 
-  function addMessage(text, who){
-    var el = document.createElement('div');
-    el.className = 'cia-msg ' + who;
-    el.innerHTML = text;
-    messages.appendChild(el);
+  function cta(href, label){ return '<br><a class="cia-cta" href="' + href + '">' + label + ' →</a>'; }
+
+  var WELCOME = "Bonjour 👋 Je suis l'assistant virtuel de <b>Crédit International d'Accompagnement</b>.<br>Je peux vous renseigner sur nos comptes, transferts, cartes, solutions entreprises et agences. Que puis-je faire pour vous ?";
+  var DEFAULT_SUGG = ['Devenir client', 'Nos agences', 'Transfert National', 'Carte Prépayée', 'Solutions entreprises', 'Contact'];
+
+  var RULES = [
+    { k:['bonjour','bonsoir','salut','hello','bjr','coucou','hey'],
+      a:"Bonjour ! Ravi de vous accueillir. Dites-moi ce que vous recherchez, ou choisissez un sujet ci-dessous.", s:DEFAULT_SUGG },
+    { k:['devenir client','ouvrir un compte','ouverture de compte','creer un compte','nouveau compte','inscription','documents','pieces','piece d identite'],
+      a:"Pour devenir client CIA, c'est simple :<ul><li>Rendez-vous dans l'une de nos agences</li><li>Munissez-vous d'une pièce d'identité valide</li><li>Votre conseiller ouvre votre compte et vous accompagne</li></ul>" + cta('nos-agences.html','Trouver une agence'),
+      s:['Nos agences','Compte Paiement Express','Compte Business Plus','Horaires'] },
+    { k:['agence','agences','adresse','ou etes','localisation','trouver','brazzaville','pointe-noire','pointe noire','succursale'],
+      a:"CIA vous accueille dans 3 agences :<ul><li><b>Brazzaville</b> — Plateaux des 15 ans</li><li><b>Pointe-Noire</b> — Rond-point Songolo</li><li><b>Pointe-Noire</b> — Port Autonome</li></ul>Tél. : <a href=\"tel:+242052061111\">(+242) 05 206 11 11</a>" + cta('nos-agences.html','Voir toutes nos agences'),
+      s:['Horaires','Contact','Devenir client'] },
+    { k:['compte paiement express','paiement express','compte particulier','compte courant','compte'],
+      a:"Le <b>Compte Paiement Express</b> est le compte du quotidien pour les particuliers : il donne accès au Transfert National, au Portefeuille Mobile et à la Carte Prépayée CIA." + cta('particuliers.html','Voir les offres particuliers'),
+      s:['Devenir client','Carte Prépayée','Portefeuille Mobile'] },
+    { k:['transfert','envoyer','envoi','argent','virement','transfert national'],
+      a:"Le <b>Transfert National Instantané</b> vous permet d'envoyer de l'argent partout au Congo en quelques minutes, même si le bénéficiaire n'a pas de compte bancaire." + cta('particuliers.html','En savoir plus'),
+      s:['Tarifs et frais','Nos agences','Devenir client'] },
+    { k:['portefeuille','wallet','mobile money','momo','airtel','mtn'],
+      a:"Le <b>Portefeuille Mobile (Wallet)</b> CIA vous permet de stocker, recevoir et payer en toute simplicité, directement lié à votre compte." + cta('particuliers.html','Découvrir le Wallet'),
+      s:['Carte Prépayée','Transfert National','Devenir client'] },
+    { k:['carte','prepayee','visa','nfc','sans contact','qr'],
+      a:"La <b>Carte Prépayée CIA</b> fonctionne en sans contact (NFC) et par QR Code, avec plusieurs designs au choix. Idéale pour payer en toute sécurité au quotidien." + cta('particuliers.html','Découvrir la carte'),
+      s:['Devenir client','Carte perdue / volée','Tarifs et frais'] },
+    { w:3, k:['perdu','perdue','vole','volee','bloquer','opposition','fraude','arnaque','piratage','carte perdue'],
+      a:"⚠️ En cas de perte, de vol ou d'opération suspecte, contactez-nous <b>immédiatement</b> au <a href=\"tel:+242052061111\">(+242) 05 206 11 11</a> pour bloquer votre carte ou votre accès.<br>CIA ne vous demandera <b>jamais</b> votre code secret par téléphone, SMS ou email.",
+      s:['Contact','Nos agences'] },
+    { k:['e-banking','ebanking','en ligne','banque en ligne','internet banking','espace client','connexion','mot de passe'],
+      a:"<b>E-Banking CIA</b> vous permet de consulter vos comptes et d'effectuer vos opérations en ligne, 24h/24 et 7j/7. L'activation se fait gratuitement auprès de votre conseiller." + cta('e-banking.html','Découvrir E-Banking'),
+      s:['Devenir client','Contact'] },
+    { k:['application','appli','app','telephone portable','play store','app store','cia mobile'],
+      a:"L'application mobile CIA est en cours de finalisation et sera bientôt disponible sur Google Play et l'App Store. En attendant, profitez de <b>E-Banking CIA</b>." + cta('e-banking.html','Découvrir E-Banking'),
+      s:['E-Banking','Contact'] },
+    { k:['business plus','compte business','compte pro','commercant','pme','professionnel','transitaire','consultant'],
+      a:"Le <b>Compte Business Plus</b> est conçu pour les commerçants, transitaires, consultants et PME : encaissements, paiements et gestion simplifiée de votre activité." + cta('entreprises.html','Voir les solutions pros'),
+      s:['Terminal de paiement (TPE)','Encaissement Digital','Salaire Express'] },
+    { k:['tpe','terminal','encaissement','encaisser','encaissement digital','paiement par carte'],
+      a:"CIA équipe votre commerce :<ul><li><b>Terminal de Paiement (TPE)</b></li><li><b>Encaissement Digital</b> : cartes, Mobile Money, QR Code et Wallet</li></ul>Encaissez instantanément, où que vous soyez." + cta('entreprises.html','Équiper mon activité'),
+      s:['Compte Business Plus','Contact'] },
+    { k:['entreprise','entreprises','tresorerie','cash management','salaire','salaire express','paie','paiement de masse','api','societe'],
+      a:"Pour les entreprises, CIA propose :<ul><li>Gestion de trésorerie centralisée &amp; Cash Management</li><li><b>Salaire Express</b> et Paiement de Masse</li><li>Plateforme Entreprise Online et Solutions API</li></ul>" + cta('entreprises.html','Voir les solutions entreprises'),
+      s:['Compte Business Plus','Terminal de paiement (TPE)','Parler à un conseiller'] },
+    { w:1.6, k:['tarif','tarifs','frais','prix','cout','combien','commission','gratuit'],
+      a:"Nos tarifs dépendent du produit et du montant de l'opération. Pour obtenir une grille précise, contactez votre agence ou notre service client au <a href=\"tel:+242052061111\">(+242) 05 206 11 11</a>." + cta('contact.html','Demander les tarifs'),
+      s:['Nos agences','Contact'] },
+    { k:['credit','pret','emprunt','financement','microcredit','epargne','placement'],
+      a:"En tant qu'institution de microfinance agréée, CIA accompagne ses clients dans leurs projets. Pour étudier votre besoin, un conseiller vous reçoit en agence." + cta('contact.html','Prendre contact'),
+      s:['Nos agences','Devenir client'] },
+    { k:['horaire','horaires','heure','heures','ouvert','fermeture','samedi','dimanche'],
+      a:"Les horaires peuvent varier selon l'agence. Appelez-nous au <a href=\"tel:+242052061111\">(+242) 05 206 11 11</a> pour connaître ceux de votre agence." + cta('nos-agences.html','Voir nos agences'),
+      s:['Nos agences','Contact'] },
+    { k:['contact','contacter','telephone','numero','email','mail','appeler','joindre','conseiller','parler a','humain'],
+      a:"Notre équipe est à votre écoute :<ul><li>📞 <a href=\"tel:+242052061111\">(+242) 05 206 11 11</a></li><li>📞 <a href=\"tel:+242068205757\">(+242) 06 820 57 57</a></li><li>✉️ <a href=\"mailto:contact@ciafinances.com\">contact@ciafinances.com</a></li></ul>" + cta('contact.html','Formulaire de contact'),
+      s:['Nos agences','Horaires'] },
+    { k:['qui etes','a propos','agree','agrement','cobac','securite','fiable','qui est cia'],
+      a:"<b>Crédit International d'Accompagnement (CIA)</b> est une institution de microfinance agréée, dont le siège social est à Pointe-Noire, au service des particuliers, professionnels et entreprises du Congo." + cta('a-propos.html','En savoir plus sur CIA'),
+      s:['Nos agences','Devenir client'] },
+    { k:['rse','responsabilite','environnement','engagement'],
+      a:"Découvrez l'engagement de CIA en matière de responsabilité sociétale et environnementale." + cta('rse.html','Voir notre page RSE'),
+      s:DEFAULT_SUGG },
+    { k:['merci','thanks','super','parfait','top'],
+      a:"Avec plaisir 😊 Puis-je vous aider pour autre chose ?", s:DEFAULT_SUGG },
+    { k:['au revoir','bye','a bientot','bonne journee','bonne soiree'],
+      a:"Merci de votre visite et à bientôt chez CIA ! 👋", s:DEFAULT_SUGG }
+  ];
+  var ALIASES = { 'Carte perdue / volée':'carte perdue', 'Tarifs et frais':'tarifs', 'Terminal de paiement (TPE)':'tpe', 'Parler à un conseiller':'conseiller', 'Solutions entreprises':'entreprises', 'Portefeuille Mobile':'portefeuille', 'E-Banking':'e-banking' };
+
+  function norm(t){
+    return (' ' + t + ' ').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/['’]/g,' ').replace(/[^a-z0-9\- ]/g,' ').replace(/\s+/g,' ');
+  }
+
+  function findRule(text){
+    var n = norm(text), best = null, bestScore = 0;
+    RULES.forEach(function(r){
+      var score = 0;
+      r.k.forEach(function(k){
+        var kk = norm(k).trim();
+        if(n.indexOf(' ' + kk + ' ') !== -1) score += 2 + kk.split(' ').length;
+        else if(kk.length > 4 && n.indexOf(kk) !== -1) score += 1;
+      });
+      score *= (r.w || 1);
+      if(score > bestScore){ bestScore = score; best = r; }
+    });
+    return best;
+  }
+
+  function fallback(){
+    return { a:"Je n'ai pas bien compris votre demande 🤔 Pouvez-vous reformuler, ou choisir un sujet ci-dessous ? Vous pouvez aussi joindre un conseiller au <a href=\"tel:+242052061111\">(+242) 05 206 11 11</a>.", s:DEFAULT_SUGG };
+  }
+
+  function timeNow(){ var d = new Date(); return ('0'+d.getHours()).slice(-2) + ':' + ('0'+d.getMinutes()).slice(-2); }
+  function escapeHtml(t){ return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  function render(m){
+    var row = document.createElement('div');
+    row.className = 'cia-row ' + m.who;
+    var wrap = document.createElement('div');
+    var bubble = document.createElement('div');
+    bubble.className = 'cia-msg ' + m.who;
+    bubble.innerHTML = m.html;
+    var t = document.createElement('div');
+    t.className = 'cia-time'; t.textContent = m.t;
+    wrap.appendChild(bubble); wrap.appendChild(t);
+    if(m.who === 'bot'){ var mini = document.createElement('div'); mini.className = 'mini'; mini.innerHTML = '<img src="' + ICON + '" alt="">'; row.appendChild(mini); }
+    row.appendChild(wrap);
+    messages.appendChild(row);
     messages.scrollTop = messages.scrollHeight;
+  }
+
+  function save(sugg){
+    try{ sessionStorage.setItem(STORE, JSON.stringify({ h:history.slice(-40), s:sugg })); }catch(e){}
+  }
+
+  function setSuggestions(list){
+    quick.innerHTML = '';
+    (list || DEFAULT_SUGG).forEach(function(label){
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'cia-quick-btn'; b.textContent = label;
+      b.addEventListener('click', function(){ if(!win.classList.contains('open')) openChat(); handleUserText(label); });
+      quick.appendChild(b);
+    });
+    quick.scrollLeft = 0;
+  }
+
+  function addMessage(html, who, sugg){
+    var m = { who:who, html:html, t:timeNow() };
+    history.push(m); render(m);
+    if(who === 'bot'){ setSuggestions(sugg); save(sugg); } else { save(null); }
+  }
+
+  function showTyping(){
+    var row = document.createElement('div');
+    row.className = 'cia-row bot'; row.id = 'ciaTyping';
+    row.innerHTML = '<div class="mini"><img src="' + ICON + '" alt=""></div><div class="cia-msg bot cia-typing"><span></span><span></span><span></span></div>';
+    messages.appendChild(row);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function handleUserText(text){
+    text = (text || '').trim();
+    if(!text || busy) return;
+    busy = true;
+    addMessage(escapeHtml(text), 'user');
+    var query = ALIASES[text] || text;
+    var r = findRule(query) || fallback();
+    showTyping();
+    setTimeout(function(){
+      var t = document.getElementById('ciaTyping'); if(t) t.parentNode.removeChild(t);
+      addMessage(r.a, 'bot', r.s);
+      busy = false;
+    }, 500 + Math.min(r.a.length * 2, 800));
+  }
+
+  function start(){
+    history = [];
+    messages.innerHTML = '';
+    addMessage(WELCOME, 'bot', DEFAULT_SUGG);
   }
 
   function openChat(){
     win.classList.add('open');
     toggle.classList.add('open');
     toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', "Fermer l'assistant CIA");
     if(badge) badge.style.display = 'none';
-    if(!opened){
-      opened = true;
-      addMessage("Bonjour 👋 Je suis l'assistant virtuel de CIA. Comment puis-je vous aider aujourd'hui ? Vous pouvez me poser une question ou choisir un sujet ci-dessous.", 'bot');
-    }
-    input.focus();
+    if(hint) hint.classList.remove('show');
+    try{ sessionStorage.setItem('ciaChatOpened','1'); }catch(e){}
+    if(!history.length) start();
+    messages.scrollTop = messages.scrollHeight;
+    if(window.matchMedia('(min-width:481px)').matches) input.focus();
   }
 
   function closeChat(){
     win.classList.remove('open');
     toggle.classList.remove('open');
     toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', "Ouvrir l'assistant CIA");
   }
 
-  toggle.addEventListener('click', function(){
-    if(win.classList.contains('open')){ closeChat(); } else { openChat(); }
-  });
+  // Restaurer la conversation lors de la navigation entre les pages
+  try{
+    var saved = JSON.parse(sessionStorage.getItem(STORE) || 'null');
+    if(saved && saved.h && saved.h.length){ history = saved.h; history.forEach(render); setSuggestions(saved.s); if(badge) badge.style.display = 'none'; }
+    else { setSuggestions(DEFAULT_SUGG); }
+  }catch(e){ setSuggestions(DEFAULT_SUGG); }
 
-  var RULES = [
-    { k: ['bonjour','bonsoir','salut','hello','bjr'], a: "Bonjour ! Je suis là pour répondre à vos questions sur les services CIA : comptes, transferts, agences, carte ou e-banking. Que souhaitez-vous savoir ?" },
-    { k: ['devenir client','ouvrir un compte','ouverture de compte','créer un compte'], a: "Pour devenir client CIA, rendez-vous dans l'une de nos agences avec une pièce d'identité valide. Notre équipe vous accompagne pour l'ouverture de votre compte le jour même. <a href=\"contact.html\">Voir nos coordonnées</a>." },
-    { k: ['agence','agences','adresse','où êtes-vous','localisation','où vous trouver'], a: "CIA est présent à Brazzaville (Plateaux des 15 ans) et à Pointe-Noire (Rond-point Songolo et Port Autonome). <a href=\"nos-agences.html\">Voir toutes nos agences →</a>" },
-    { k: ['transfert','envoyer de largent','envoyer de l\'argent','transfert national'], a: "Le Transfert National CIA vous permet d'envoyer de l'argent partout au Congo en quelques minutes, même si le destinataire n'a pas de compte bancaire. <a href=\"particuliers.html\">En savoir plus sur nos solutions particuliers →</a>" },
-    { k: ['carte','carte prépayée','carte bancaire'], a: "La Carte Prépayée CIA fonctionne sans contact (NFC) et par QR Code, avec plusieurs designs disponibles. <a href=\"particuliers.html\">Découvrir la carte CIA →</a>" },
-    { k: ['mobile','application','app','téléphone portable'], a: "L'application CIA Mobile réunit le Transfert National, le Portefeuille électronique et les notifications en temps réel. Elle sera bientôt disponible sur Google Play et l'App Store." },
-    { k: ['e-banking','en ligne','banque en ligne','internet banking'], a: "E-Banking CIA vous permet de consulter vos comptes et faire vos virements en ligne, 24h/24 et 7j/7. <a href=\"e-banking.html\">Découvrir E-Banking CIA →</a>" },
-    { k: ['entreprise','entreprises','professionnel','trésorerie','tpe'], a: "CIA propose des solutions dédiées aux professionnels et entreprises : trésorerie, paiement des salaires, cash management. <a href=\"entreprises.html\">Voir nos solutions entreprises →</a>" },
-    { k: ['contact','téléphone','numéro','email','mail','appeler'], a: "Vous pouvez nous joindre au (+242) 05 206 11 11 / (+242) 06 820 57 57 ou par email à <a href=\"mailto:contact@ciafinances.com\">contact@ciafinances.com</a>. <a href=\"contact.html\">Voir la page Contact →</a>" },
-    { k: ['horaire','heure','ouvert','fermeture'], a: "Les horaires peuvent varier selon l'agence. Contactez directement votre agence CIA ou notre service client pour connaître les horaires d'ouverture. <a href=\"contact.html\">Nous contacter →</a>" },
-    { k: ['rse','responsabilité','environnement','social'], a: "Découvrez l'engagement de CIA en matière de responsabilité sociétale. <a href=\"rse.html\">Voir notre page RSE →</a>" },
-    { k: ['merci','thanks'], a: "Avec plaisir ! N'hésitez pas si vous avez d'autres questions." },
-  ];
-
-  function findAnswer(text){
-    var normalized = text.toLowerCase();
-    for(var i = 0; i < RULES.length; i++){
-      var rule = RULES[i];
-      for(var j = 0; j < rule.k.length; j++){
-        if(normalized.indexOf(rule.k[j]) !== -1){
-          return rule.a;
-        }
-      }
+  // Bulle d'invitation (une fois par visite)
+  try{
+    if(hint && !sessionStorage.getItem('ciaChatOpened') && !sessionStorage.getItem('ciaHintShown')){
+      setTimeout(function(){
+        if(win.classList.contains('open')) return;
+        hint.classList.add('show');
+        try{ sessionStorage.setItem('ciaHintShown','1'); }catch(e){}
+        setTimeout(function(){ hint.classList.remove('show'); }, 7000);
+      }, 4000);
     }
-    return "Merci pour votre message. Pour une réponse personnalisée, notre équipe est disponible au (+242) 05 206 11 11 ou par email à <a href=\"mailto:contact@ciafinances.com\">contact@ciafinances.com</a>. Vous pouvez aussi essayer les sujets ci-dessus : agences, devenir client, transfert, carte, mobile…";
-  }
+  }catch(e){}
+  if(hint) hint.addEventListener('click', openChat);
 
-  function handleUserText(text){
-    text = text.trim();
-    if(!text) return;
-    addMessage(text.replace(/</g, '&lt;'), 'user');
-    setTimeout(function(){
-      addMessage(findAnswer(text), 'bot');
-    }, 350);
-  }
+  toggle.addEventListener('click', function(){ if(win.classList.contains('open')){ closeChat(); } else { openChat(); } });
+  document.getElementById('ciaChatClose').addEventListener('click', closeChat);
+  document.getElementById('ciaChatReset').addEventListener('click', function(){ if(!busy) start(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && win.classList.contains('open')) closeChat(); });
+  input.addEventListener('input', function(){ send.disabled = !input.value.trim(); });
 
   form.addEventListener('submit', function(e){
     e.preventDefault();
     var text = input.value;
-    input.value = '';
+    input.value = ''; send.disabled = true;
     handleUserText(text);
-  });
-
-  quickButtons.forEach(function(btn){
-    btn.addEventListener('click', function(){
-      if(!win.classList.contains('open')) openChat();
-      handleUserText(btn.getAttribute('data-q'));
-    });
   });
 })();
 </script>
