@@ -24,7 +24,6 @@
   .topbar-links{display:flex; align-items:center; gap:24px; flex-wrap:wrap;}
   .topbar-links a{color:#fff; display:flex; align-items:center; gap:6px; font-weight:700; font-size:0.78rem; letter-spacing:0.2px;}
   .topbar-links a:hover{opacity:0.85;}
-  .topbar-links .eb-ico{width:24px; height:24px; border-radius:6px; background:rgba(255,255,255,0.18); display:inline-flex; align-items:center; justify-content:center;}
   .topbar-right{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
   .topbar-social{display:flex; align-items:center; gap:8px; margin-right:6px;}
   .topbar-social a{width:24px; height:24px; border-radius:50%; background:rgba(255,255,255,0.18); display:flex; align-items:center; justify-content:center; font-size:0.68rem; font-weight:700; color:#fff;}
@@ -400,7 +399,6 @@
 <div class="topbar">
   <div class="wrap topbar-row">
     <div class="topbar-links">
-      <a href="e-banking.html"><span class="eb-ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="13" rx="2"/><path d="M8 21h8M12 16v5"/><rect x="9" y="9" width="6" height="4.5" rx="1"/><path d="M10.5 9V7.6a1.5 1.5 0 0 1 3 0V9"/></svg></span>E-BANKING CIA</a>
     </div>
     <div class="topbar-right">
       <div class="topbar-social">
@@ -865,12 +863,9 @@
     { w:3, k:['perdu','perdue','vole','volee','bloquer','opposition','fraude','arnaque','piratage','carte perdue'],
       a:"⚠️ En cas de perte, de vol ou d'opération suspecte, contactez-nous <b>immédiatement</b> au <a href=\"tel:+242052061111\">(+242) 05 206 11 11</a> pour bloquer votre carte ou votre accès.<br>CIA ne vous demandera <b>jamais</b> votre code secret par téléphone, SMS ou email.",
       s:['Contact','Nos agences'] },
-    { k:['e-banking','ebanking','en ligne','banque en ligne','internet banking','espace client','connexion','mot de passe'],
-      a:"<b>E-Banking CIA</b> vous permet de consulter vos comptes et d'effectuer vos opérations en ligne, 24h/24 et 7j/7. L'activation se fait gratuitement auprès de votre conseiller." + cta('e-banking.html','Découvrir E-Banking'),
-      s:['Devenir client','Contact'] },
     { k:['application','appli','app','telephone portable','play store','app store','cia mobile'],
-      a:"L'application mobile CIA est en cours de finalisation et sera bientôt disponible sur Google Play et l'App Store. En attendant, profitez de <b>E-Banking CIA</b>." + cta('e-banking.html','Découvrir E-Banking'),
-      s:['E-Banking','Contact'] },
+      a:"L'application mobile CIA est en cours de finalisation et sera bientôt disponible sur Google Play et l'App Store. En attendant, nos conseillers vous accueillent en agence." + cta('nos-agences.html','Trouver une agence'),
+      s:['Nos agences','Contact'] },
     { k:['business plus','compte business','compte pro','commercant','pme','professionnel','transitaire','consultant'],
       a:"Le <b>Compte Business Plus</b> est conçu pour les commerçants, transitaires, consultants et PME : encaissements, paiements et gestion simplifiée de votre activité." + cta('entreprises.html','Voir les solutions pros'),
       s:['Terminal de paiement (TPE)','Encaissement Digital','Salaire Express'] },
@@ -903,7 +898,7 @@
     { k:['au revoir','bye','a bientot','bonne journee','bonne soiree'],
       a:"Merci de votre visite et à bientôt chez CIA ! 👋", s:DEFAULT_SUGG }
   ];
-  var ALIASES = { 'Carte perdue / volée':'carte perdue', 'Tarifs et frais':'tarifs', 'Terminal de paiement (TPE)':'tpe', 'Parler à un conseiller':'conseiller', 'Solutions entreprises':'entreprises', 'Portefeuille Mobile':'portefeuille', 'E-Banking':'e-banking' };
+  var ALIASES = { 'Carte perdue / volée':'carte perdue', 'Tarifs et frais':'tarifs', 'Terminal de paiement (TPE)':'tpe', 'Parler à un conseiller':'conseiller', 'Solutions entreprises':'entreprises', 'Portefeuille Mobile':'portefeuille' };
 
   function norm(t){
     return (' ' + t + ' ').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/['’]/g,' ').replace(/[^a-z0-9\- ]/g,' ').replace(/\s+/g,' ');
