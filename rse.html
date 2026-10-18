@@ -465,7 +465,9 @@
   .rse-partner-card .rpc-label{font-size:0.72rem; letter-spacing:1.5px; text-transform:uppercase; color:#b9c6ef; font-weight:700; margin-bottom:6px;}
   .rse-partner-card h3{font-size:1.35rem; font-weight:800; line-height:1.3; margin-bottom:8px;}
   .rse-partner-card p{color:#dfe7fb; font-size:0.9rem; line-height:1.6;}
-  .rse-partner-card .rpc-tag{display:inline-flex; align-items:center; gap:6px; margin-top:16px; background:rgba(255,255,255,0.12); padding:6px 12px; border-radius:20px; font-size:0.78rem; font-weight:700;}
+  .rse-partner-card .rpc-countries{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px;}
+  .rse-partner-card .rpc-tag{display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.12); padding:6px 12px 6px 8px; border-radius:20px; font-size:0.78rem; font-weight:700;}
+  .rse-partner-card .rpc-flag{width:24px; height:16px; border-radius:3px; flex-shrink:0; box-shadow:0 0 0 1px rgba(255,255,255,0.35);}
 
   .rse-domains{display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-top:8px;}
   .rse-domain{background:#fff; border:1px solid var(--border); border-radius:16px; padding:30px 24px; text-align:left; transition:transform .2s ease, box-shadow .2s ease;}
@@ -518,7 +520,7 @@
           <div class="rpc-label">Notre partenaire</div>
           <h3>Fondation Pro-Social Inter-États</h3>
           <p>Organisation mondiale pour l'environnement, la santé, la formation et le développement économique, basée au Congo.</p>
-          <span class="rpc-tag">📍 République du Congo</span>
+          <div class="rpc-countries"><span class="rpc-tag"><svg class="rpc-flag" viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#FBDE4A"/><polygon points="0,0 20,0 0,20" fill="#009543"/><polygon points="30,0 30,20 10,20" fill="#DC241F"/></svg>République du Congo</span><span class="rpc-tag"><svg class="rpc-flag" viewBox="0 0 30 20" aria-hidden="true"><rect width="10" height="20" fill="#002664"/><rect x="10" width="10" height="20" fill="#FECB00"/><rect x="20" width="10" height="20" fill="#C60C30"/></svg>Tchad</span><span class="rpc-tag"><svg class="rpc-flag" viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="6.67" fill="#009E60"/><rect y="6.67" width="30" height="6.67" fill="#FCD116"/><rect y="13.33" width="30" height="6.67" fill="#3A75C4"/></svg>Gabon</span><span class="rpc-tag"><svg class="rpc-flag" viewBox="0 0 30 20" aria-hidden="true"><rect width="10" height="20" fill="#F77F00"/><rect x="10" width="10" height="20" fill="#FFFFFF"/><rect x="20" width="10" height="20" fill="#009E60"/></svg>Côte d'Ivoire</span></div>
         </div>
       </div>
     </div>
