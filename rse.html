@@ -445,12 +445,142 @@
   </div>
 </header>
 
-<section class="segment">
+<style>
+  .rse-hero{background:linear-gradient(180deg,var(--lightblue) 0%, #fff 100%); padding:64px 0 56px;}
+  .rse-hero .center-head{max-width:860px; margin:0 auto; text-align:center;}
+  .rse-hero h1{font-size:2.2rem; font-weight:800; color:#151b2e; line-height:1.25; margin-bottom:18px;}
+  .rse-hero h1 span{color:var(--navy);}
+  .rse-hero .gradient-bar{width:110px; height:5px; border-radius:4px; background:linear-gradient(90deg,var(--red),var(--navy)); margin:0 auto 22px;}
+  .rse-hero p{color:var(--grey-text); font-size:1.05rem; line-height:1.7;}
+  .rse-hero p strong{color:#151b2e;}
+
+  .rse-intro{display:grid; grid-template-columns:1.15fr 1fr; gap:48px; align-items:center;}
+  .rse-intro h2{font-size:1.7rem; font-weight:800; color:#151b2e; margin-bottom:16px; line-height:1.3;}
+  .rse-intro p{color:var(--grey-text); font-size:0.98rem; line-height:1.75; margin-bottom:12px;}
+  .rse-eyebrow{color:var(--red); font-weight:800; font-size:0.75rem; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:10px; display:block;}
+  .rse-partner-card{background:var(--navy); color:#fff; border-radius:18px; padding:36px 34px; position:relative; overflow:hidden; box-shadow:0 20px 50px rgba(20,30,70,0.22);}
+  .rse-partner-card::after{content:""; position:absolute; right:-60px; bottom:-60px; width:200px; height:200px; border-radius:50%; background:rgba(255,255,255,0.06);}
+  .rse-partner-card .rpc-icon{width:56px; height:56px; border-radius:14px; background:rgba(255,255,255,0.14); display:flex; align-items:center; justify-content:center; margin-bottom:20px;}
+  .rse-partner-card .rpc-label{font-size:0.72rem; letter-spacing:1.5px; text-transform:uppercase; color:#b9c6ef; font-weight:700; margin-bottom:6px;}
+  .rse-partner-card h3{font-size:1.45rem; font-weight:800; line-height:1.3; margin-bottom:10px;}
+  .rse-partner-card p{color:#dfe7fb; font-size:0.92rem; line-height:1.6;}
+  .rse-partner-card .rpc-tag{display:inline-flex; align-items:center; gap:6px; margin-top:18px; background:rgba(255,255,255,0.12); padding:6px 12px; border-radius:20px; font-size:0.78rem; font-weight:700;}
+
+  .rse-domains{display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-top:8px;}
+  .rse-domain{background:#fff; border:1px solid var(--border); border-radius:16px; padding:30px 24px; text-align:left; transition:transform .2s ease, box-shadow .2s ease;}
+  .rse-domain:hover{transform:translateY(-4px); box-shadow:0 18px 40px rgba(20,30,70,0.1);}
+  .rse-domain .rd-icon{width:52px; height:52px; border-radius:14px; background:var(--lightblue); color:var(--navy); display:flex; align-items:center; justify-content:center; margin-bottom:18px;}
+  .rse-domain .rd-num{font-size:0.72rem; font-weight:800; color:var(--red); letter-spacing:1px; margin-bottom:6px;}
+  .rse-domain h3{font-size:1.1rem; font-weight:800; color:#151b2e; margin-bottom:8px;}
+  .rse-domain p{font-size:0.9rem; color:var(--grey-text); line-height:1.6;}
+
+  .rse-vision{display:grid; grid-template-columns:auto 1fr; gap:34px; align-items:start; background:#fff; border:1px solid var(--border); border-left:5px solid var(--red); border-radius:16px; padding:40px 44px;}
+  .rse-vision .rv-mark{font-size:4.5rem; line-height:0.8; color:var(--navy); font-weight:800; font-family:Georgia, serif;}
+  .rse-vision h2{font-size:1.5rem; font-weight:800; color:#151b2e; margin-bottom:12px;}
+  .rse-vision p{color:var(--grey-text); font-size:1rem; line-height:1.75;}
+  .rse-vision p strong{color:var(--navy);}
+
+  .rse-cta{background:linear-gradient(120deg,var(--navy),var(--navy-dark)); color:#fff; border-radius:18px; padding:44px 46px; display:flex; align-items:center; justify-content:space-between; gap:30px; flex-wrap:wrap;}
+  .rse-cta h2{font-size:1.5rem; font-weight:800; margin-bottom:8px;}
+  .rse-cta p{color:#dfe7fb; font-size:0.98rem; max-width:560px; line-height:1.6;}
+  .rse-cta .btn-cta{white-space:nowrap; font-size:1rem;}
+  .rse-cta .btn-cta:hover{background:#fff; color:var(--navy);}
+
+  @media(max-width:960px){ .rse-domains{grid-template-columns:repeat(2,1fr);} }
+  @media(max-width:880px){ .rse-intro{grid-template-columns:1fr; gap:30px;} .rse-hero h1{font-size:1.7rem;} }
+  @media(max-width:560px){ .rse-domains{grid-template-columns:1fr;} .rse-vision{grid-template-columns:1fr; padding:30px 24px; gap:10px;} .rse-cta{padding:32px 24px;} }
+</style>
+
+<section class="rse-hero">
   <div class="wrap">
     <div class="center-head">
-      <span class="seg-tag">RSE</span>
-      <h1 style="font-size:2rem; font-weight:800; color:#151b2e; margin-bottom:10px;">Notre responsabilité sociétale</h1>
-      <p>CIA s'engage au-delà de ses services financiers pour contribuer positivement aux communautés et à l'environnement au Congo.</p>
+      <span class="seg-tag">Responsabilité sociétale</span>
+      <h1>Crédit International d'Accompagnement s'engage aux côtés de la <span>Fondation Pro-Social Inter-État</span></h1>
+      <div class="gradient-bar"></div>
+      <p>Un partenariat pour soutenir <strong>la santé, l'éducation, la formation et le développement économique</strong> des populations au Congo.</p>
+    </div>
+  </div>
+</section>
+
+<section class="segment">
+  <div class="wrap">
+    <div class="rse-intro">
+      <div>
+        <span class="rse-eyebrow">Notre démarche RSE</span>
+        <h2>Une microfinance au service des personnes</h2>
+        <p>Créée pour accompagner les particuliers et les entrepreneurs, Crédit International d'Accompagnement est une microfinance spécialisée dans le transfert de fonds.</p>
+        <p>Pour nous, la réussite d'une entreprise ne se mesure pas seulement à ses résultats financiers, mais aussi à son impact sur les communautés où elle opère. C'est le sens de notre démarche de responsabilité sociétale d'entreprise (RSE).</p>
+      </div>
+      <div class="rse-partner-card">
+        <div class="rpc-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 17l2 2a1 1 0 1 0 3-3"/><path d="M14 14l2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="M21 3l1 11h-2"/><path d="M3 3L2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/></svg>
+        </div>
+        <div class="rpc-label">Notre partenaire</div>
+        <h3>Fondation Pro-Social Inter-État</h3>
+        <p>Organisation basée au Congo qui accompagne des projets à fort impact pour les populations.</p>
+        <span class="rpc-tag">📍 République du Congo</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="segment tint">
+  <div class="wrap">
+    <div class="center-head">
+      <span class="seg-tag">Un partenariat tourné vers l'essentiel</span>
+      <h2>Quatre domaines d'action clés</h2>
+      <p>Dans ce cadre, nous travaillons avec la Fondation Pro-Social Inter-État, qui accompagne des projets à fort impact dans quatre domaines.</p>
+    </div>
+    <div class="rse-domains">
+      <div class="rse-domain">
+        <div class="rd-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></svg></div>
+        <div class="rd-num">01</div>
+        <h3>La santé</h3>
+        <p>Pour faciliter l'accès aux soins.</p>
+      </div>
+      <div class="rse-domain">
+        <div class="rd-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <div class="rd-num">02</div>
+        <h3>L'éducation</h3>
+        <p>Pour offrir aux jeunes de meilleures perspectives.</p>
+      </div>
+      <div class="rse-domain">
+        <div class="rd-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z"/></svg></div>
+        <div class="rd-num">03</div>
+        <h3>La formation</h3>
+        <p>Pour développer les compétences et l'employabilité.</p>
+      </div>
+      <div class="rse-domain">
+        <div class="rd-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/></svg></div>
+        <div class="rd-num">04</div>
+        <h3>Le développement économique</h3>
+        <p>Pour soutenir l'initiative locale et la création de richesse.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="segment">
+  <div class="wrap">
+    <div class="rse-vision">
+      <div class="rv-mark">“</div>
+      <div>
+        <span class="rse-eyebrow">Une vision commune</span>
+        <h2>L'inclusion financière et le développement social vont de pair</h2>
+        <p>Ce partenariat reflète une conviction partagée. En unissant <strong>notre expertise financière</strong> à <strong>l'expérience de terrain de la Fondation</strong>, nous voulons contribuer à des progrès concrets et durables pour les populations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="segment" style="padding-top:0;">
+  <div class="wrap">
+    <div class="rse-cta">
+      <div>
+        <h2>Pour en savoir plus</h2>
+        <p>Vous souhaitez en savoir plus sur les actions de la Fondation Pro-Social Inter-État, ou la soutenir ? Contactez-la directement.</p>
+      </div>
+      <a class="btn-cta" href="tel:+242068205757">📞 +242 06 820 57 57</a>
     </div>
   </div>
 </section>
@@ -833,8 +963,8 @@
     { k:['qui etes','a propos','agree','agrement','cobac','securite','fiable','qui est cia'],
       a:"<b>Crédit International d'Accompagnement (CIA)</b> est une institution de microfinance agréée, dont le siège social est à Pointe-Noire, au service des particuliers, professionnels et entreprises du Congo." + cta('a-propos.html','En savoir plus sur CIA'),
       s:['Nos agences','Devenir client'] },
-    { k:['rse','responsabilite','environnement','engagement'],
-      a:"Découvrez l'engagement de CIA en matière de responsabilité sociétale et environnementale." + cta('rse.html','Voir notre page RSE'),
+    { k:['rse','responsabilite','environnement','engagement','fondation','pro-social','social','sante','education'],
+      a:"Dans le cadre de sa démarche RSE, CIA s'engage aux côtés de la <b>Fondation Pro-Social Inter-État</b>, qui accompagne des projets dans la santé, l'éducation, la formation et le développement économique au Congo." + cta('rse.html','Voir notre engagement RSE'),
       s:DEFAULT_SUGG },
     { k:['merci','thanks','super','parfait','top'],
       a:"Avec plaisir 😊 Puis-je vous aider pour autre chose ?", s:DEFAULT_SUGG },
