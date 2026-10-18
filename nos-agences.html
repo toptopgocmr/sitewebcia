@@ -445,42 +445,190 @@
   </div>
 </header>
 
-<section class="segment">
+<style>
+  .ag-hero{background:linear-gradient(180deg,var(--lightblue) 0%, #fff 100%); padding:60px 0 40px; text-align:center;}
+  .ag-hero h1{font-size:2.2rem; font-weight:800; color:#151b2e; line-height:1.2; margin-bottom:14px;}
+  .ag-hero .gradient-bar{width:110px; height:5px; border-radius:4px; background:linear-gradient(90deg,var(--red),var(--navy)); margin:0 auto 18px;}
+  .ag-hero p{color:var(--grey-text); font-size:1.05rem; max-width:640px; margin:0 auto;}
+  .ag-stats{display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-top:30px;}
+  .ag-stat{background:#fff; border:1px solid var(--border); border-radius:14px; padding:14px 22px; display:flex; align-items:center; gap:12px; box-shadow:0 6px 18px rgba(20,30,70,0.06);}
+  .ag-stat b{font-size:1.6rem; font-weight:800; color:var(--navy); line-height:1;}
+  .ag-stat span{font-size:0.82rem; color:var(--grey-text); text-align:left; line-height:1.3;}
+
+  .ag-filters{display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-bottom:30px;}
+  .ag-filter{background:#fff; border:1.5px solid var(--border); color:#33405c; font-weight:700; font-size:0.88rem; padding:10px 20px; border-radius:30px; cursor:pointer; font-family:inherit; transition:all .2s ease;}
+  .ag-filter:hover{border-color:var(--navy); color:var(--navy);}
+  .ag-filter.active{background:var(--navy); border-color:var(--navy); color:#fff;}
+  .ag-filter .n{display:inline-block; margin-left:6px; font-size:0.72rem; background:rgba(28,47,120,0.1); padding:2px 7px; border-radius:10px;}
+  .ag-filter.active .n{background:rgba(255,255,255,0.2);}
+
+  .ag-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .ag-card{background:#fff; border:1px solid #dfe5f2; border-radius:16px; overflow:hidden; display:flex; flex-direction:column; transition:transform .25s ease, box-shadow .25s ease;}
+  .ag-card:hover{transform:translateY(-5px); box-shadow:0 22px 44px rgba(20,30,70,0.12);}
+  .ag-card.hide{display:none;}
+  .ag-top{position:relative; background:linear-gradient(130deg,var(--navy),var(--navy-dark)); color:#fff; padding:26px 26px 24px; overflow:hidden;}
+  .ag-top::after{content:""; position:absolute; right:-40px; top:-40px; width:150px; height:150px; border-radius:50%; background:rgba(255,255,255,0.06);}
+  .ag-top .city{display:inline-flex; align-items:center; gap:6px; font-size:0.7rem; font-weight:800; letter-spacing:1.4px; text-transform:uppercase; background:rgba(255,255,255,0.14); padding:5px 11px; border-radius:20px; margin-bottom:14px;}
+  .ag-top h3{font-size:1.2rem; font-weight:800; line-height:1.3; padding-right:56px; position:relative; z-index:1;}
+  .ag-top .pin{position:absolute; right:22px; bottom:20px; width:44px; height:44px; border-radius:12px; background:var(--red); display:flex; align-items:center; justify-content:center; box-shadow:0 8px 18px rgba(226,35,26,0.35); z-index:1;}
+  .ag-body{padding:22px 26px 26px; display:flex; flex-direction:column; gap:14px; flex:1;}
+  .ag-row{display:flex; gap:12px; align-items:flex-start;}
+  .ag-row .ic{width:34px; height:34px; border-radius:9px; background:var(--lightblue); color:var(--navy); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+  .ag-row .ic svg{width:16px; height:16px;}
+  .ag-row .lbl{display:block; font-size:0.68rem; letter-spacing:1px; text-transform:uppercase; color:#8a96b3; font-weight:700; margin-bottom:2px;}
+  .ag-row .val, .ag-row a{color:#151b2e; font-weight:600; font-size:0.92rem;}
+  .ag-row a:hover{color:var(--red);}
+  .ag-actions{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:auto; padding-top:8px;}
+  .ag-btn{display:inline-flex; align-items:center; justify-content:center; gap:7px; padding:11px 12px; border-radius:9px; font-weight:700; font-size:0.85rem; transition:all .2s ease;}
+  .ag-btn svg{width:15px; height:15px;}
+  .ag-btn.call{background:var(--red); color:#fff;}
+  .ag-btn.call:hover{background:var(--navy);}
+  .ag-btn.map{border:1.5px solid #c9d4ee; color:var(--navy);}
+  .ag-btn.map:hover{border-color:var(--navy); background:var(--lightblue);}
+
+  .ag-visit{display:grid; grid-template-columns:1fr 1.3fr; gap:40px; align-items:center;}
+  .ag-visit h2{font-size:1.7rem; font-weight:800; color:#151b2e; margin-bottom:12px; line-height:1.3;}
+  .ag-visit > div > p{color:var(--grey-text); line-height:1.7;}
+  .ag-eyebrow{color:var(--red); font-weight:800; font-size:0.75rem; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:10px; display:block;}
+  .ag-steps{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  .ag-step{background:#fff; border:1px solid var(--border); border-radius:14px; padding:22px 20px;}
+  .ag-step .num{width:34px; height:34px; border-radius:50%; background:var(--navy); color:#fff; font-weight:800; font-size:0.9rem; display:flex; align-items:center; justify-content:center; margin-bottom:14px;}
+  .ag-step h4{font-size:0.98rem; font-weight:800; color:#151b2e; margin-bottom:6px;}
+  .ag-step p{font-size:0.86rem; color:var(--grey-text); line-height:1.55;}
+  .ag-step a{color:var(--red); font-weight:700;}
+
+  .ag-hq{display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; background:#fff; border:1px solid var(--border); border-left:5px solid var(--red); border-radius:14px; padding:26px 30px;}
+  .ag-hq .t{font-size:0.72rem; letter-spacing:1.4px; text-transform:uppercase; color:var(--red); font-weight:800; margin-bottom:6px;}
+  .ag-hq h3{font-size:1.15rem; font-weight:800; color:#151b2e; margin-bottom:4px;}
+  .ag-hq p{color:var(--grey-text); font-size:0.92rem;}
+
+  @media(max-width:980px){ .ag-grid{grid-template-columns:repeat(2,1fr);} .ag-visit{grid-template-columns:1fr;} }
+  @media(max-width:640px){ .ag-grid{grid-template-columns:1fr;} .ag-steps{grid-template-columns:1fr;} .ag-hero h1{font-size:1.7rem;} .ag-stat{padding:12px 16px;} }
+</style>
+
+<section class="ag-hero">
   <div class="wrap">
-    <div class="center-head">
-      <span class="seg-tag">Nos Agences</span>
-      <h1 style="font-size:2rem; font-weight:800; color:#151b2e; margin-bottom:10px;">Retrouvez CIA près de chez vous</h1>
-      <p>Nos équipes vous accueillent dans nos agences pour vous accompagner dans toutes vos démarches financières.</p>
+    <span class="seg-tag">Nos Agences</span>
+    <h1>Retrouvez CIA près de chez vous</h1>
+    <div class="gradient-bar"></div>
+    <p>Nos équipes vous accueillent dans nos agences pour vous accompagner dans toutes vos démarches financières.</p>
+    <div class="ag-stats">
+      <div class="ag-stat"><b>3</b><span>agences<br>à votre service</span></div>
+      <div class="ag-stat"><b>2</b><span>villes :<br>Brazzaville &amp; Pointe-Noire</span></div>
+      <div class="ag-stat"><b>1</b><span>numéro unique<br>05 206 11 11</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="segment" style="padding-top:20px;">
+  <div class="wrap">
+    <div class="ag-filters" role="tablist" aria-label="Filtrer par ville">
+      <button type="button" class="ag-filter active" data-city="all">Toutes<span class="n">3</span></button>
+      <button type="button" class="ag-filter" data-city="brazzaville">Brazzaville<span class="n">1</span></button>
+      <button type="button" class="ag-filter" data-city="pointe-noire">Pointe-Noire<span class="n">2</span></button>
     </div>
 
-    <div class="contact-item">
-      <div class="contact-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.5 7-11.5A7 7 0 0 0 5 9.5C5 14.5 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/></svg></div>
+    <div class="ag-grid">
+      <!-- Agence 1 -->
+      <article class="ag-card" data-city="brazzaville">
+        <div class="ag-top">
+          <span class="city">Brazzaville</span>
+          <h3>Agence de Brazzaville</h3>
+          <span class="pin"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+        </div>
+        <div class="ag-body">
+          <div class="ag-row"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span><div><span class="lbl">Adresse</span><span class="val">Plateaux des 15 ans, Brazzaville</span></div></div>
+          <div class="ag-row"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></span><div><span class="lbl">Téléphone</span><a href="tel:+242052061111">(+242) 05 206 11 11</a></div></div>
+          <div class="ag-actions">
+            <a class="ag-btn call" href="tel:+242052061111"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>Appeler</a>
+            <a class="ag-btn map" href="https://www.google.com/maps/search/?api=1&amp;query=Plateaux+des+15+ans+Brazzaville+Congo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 19-9-9 19-2-8-8-2Z"/></svg>Itinéraire</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Agence 2 -->
+      <article class="ag-card" data-city="pointe-noire">
+        <div class="ag-top">
+          <span class="city">Pointe-Noire</span>
+          <h3>Agence Rond-point Songolo</h3>
+          <span class="pin"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+        </div>
+        <div class="ag-body">
+          <div class="ag-row"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span><div><span class="lbl">Adresse</span><span class="val">Rond-point Songolo, Pointe-Noire</span></div></div>
+          <div class="ag-row"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></span><div><span class="lbl">Téléphone</span><a href="tel:+242052061111">(+242) 05 206 11 11</a></div></div>
+          <div class="ag-actions">
+            <a class="ag-btn call" href="tel:+242052061111"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>Appeler</a>
+            <a class="ag-btn map" href="https://www.google.com/maps/search/?api=1&amp;query=Rond-point+Songolo+Pointe-Noire+Congo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 19-9-9 19-2-8-8-2Z"/></svg>Itinéraire</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Agence 3 -->
+      <article class="ag-card" data-city="pointe-noire">
+        <div class="ag-top">
+          <span class="city">Pointe-Noire</span>
+          <h3>Agence Port Autonome</h3>
+          <span class="pin"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+        </div>
+        <div class="ag-body">
+          <div class="ag-row"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span><div><span class="lbl">Adresse</span><span class="val">Port Autonome de Pointe-Noire, Pointe-Noire</span></div></div>
+          <div class="ag-row"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></span><div><span class="lbl">Téléphone</span><a href="tel:+242052061111">(+242) 05 206 11 11</a></div></div>
+          <div class="ag-actions">
+            <a class="ag-btn call" href="tel:+242052061111"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>Appeler</a>
+            <a class="ag-btn map" href="https://www.google.com/maps/search/?api=1&amp;query=Port+Autonome+de+Pointe-Noire+Congo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 19-9-9 19-2-8-8-2Z"/></svg>Itinéraire</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="segment tint">
+  <div class="wrap">
+    <div class="ag-visit">
       <div>
-        <h4>Agence de Brazzaville</h4>
-        <p>Plateaux des 15 ans, Brazzaville</p>
-        <a href="tel:+242052061111">(+242) 05 206 11 11</a>
+        <span class="ag-eyebrow">Préparer votre visite</span>
+        <h2>Un accueil simple et rapide en agence</h2>
+        <p>Ouverture de compte, transfert, carte prépayée ou solutions professionnelles : nos conseillers vous reçoivent et vous accompagnent pas à pas.</p>
       </div>
-    </div>
-
-    <div class="contact-item">
-      <div class="contact-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.5 7-11.5A7 7 0 0 0 5 9.5C5 14.5 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/></svg></div>
-      <div>
-        <h4>Agence de Pointe-Noire — Rond-point Songolo</h4>
-        <p>Rond-point Songolo, Pointe-Noire</p>
-        <a href="tel:+242052061111">(+242) 05 206 11 11</a>
-      </div>
-    </div>
-
-    <div class="contact-item">
-      <div class="contact-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.5 7-11.5A7 7 0 0 0 5 9.5C5 14.5 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/></svg></div>
-      <div>
-        <h4>Agence de Pointe-Noire — Port Autonome</h4>
-        <p>Port Autonome de Pointe-Noire, Pointe-Noire</p>
-        <a href="tel:+242052061111">(+242) 05 206 11 11</a>
+      <div class="ag-steps">
+        <div class="ag-step"><div class="num">1</div><h4>Appelez-nous</h4><p>Vérifiez les horaires de votre agence au <a href="tel:+242052061111">05 206 11 11</a>.</p></div>
+        <div class="ag-step"><div class="num">2</div><h4>Pièce d'identité</h4><p>Munissez-vous d'une pièce d'identité valide pour toute ouverture de compte.</p></div>
+        <div class="ag-step"><div class="num">3</div><h4>Votre conseiller</h4><p>Un conseiller CIA vous reçoit et répond à toutes vos questions.</p></div>
       </div>
     </div>
   </div>
 </section>
+
+<section class="segment">
+  <div class="wrap">
+    <div class="ag-hq">
+      <div>
+        <div class="t">Siège social</div>
+        <h3>Crédit International d'Accompagnement</h3>
+        <p>Zone portuaire, avenue Félix Éboué, à côté de l'hôtel de Fez — Pointe-Noire, BP 5124 PNR</p>
+      </div>
+      <a class="btn-cta" href="contact.html">Nous contacter →</a>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var btns = document.querySelectorAll('.ag-filter');
+  var cards = document.querySelectorAll('.ag-card');
+  btns.forEach(function(b){
+    b.addEventListener('click', function(){
+      btns.forEach(function(x){ x.classList.remove('active'); });
+      b.classList.add('active');
+      var c = b.getAttribute('data-city');
+      cards.forEach(function(card){
+        card.classList.toggle('hide', c !== 'all' && card.getAttribute('data-city') !== c);
+      });
+    });
+  });
+})();
+</script>
 
 
 <section class="segment">
