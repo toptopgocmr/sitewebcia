@@ -24,6 +24,7 @@
   .topbar-links{display:flex; align-items:center; gap:24px; flex-wrap:wrap;}
   .topbar-links a{color:#fff; display:flex; align-items:center; gap:6px; font-weight:700; font-size:0.78rem; letter-spacing:0.2px;}
   .topbar-links a:hover{opacity:0.85;}
+  .topbar-links .eb-ico{width:24px; height:24px; border-radius:6px; background:rgba(255,255,255,0.18); display:inline-flex; align-items:center; justify-content:center;}
   .topbar-right{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
   .topbar-social{display:flex; align-items:center; gap:8px; margin-right:6px;}
   .topbar-social a{width:24px; height:24px; border-radius:50%; background:rgba(255,255,255,0.18); display:flex; align-items:center; justify-content:center; font-size:0.68rem; font-weight:700; color:#fff;}
@@ -393,8 +394,7 @@
 <div class="topbar">
   <div class="wrap topbar-row">
     <div class="topbar-links">
-      <a href="e-banking.html">🔒 E-BANKING CIA</a>
-      <a href="cia-mobile.html">📲 CIA MOBILE</a>
+      <a href="e-banking.html"><span class="eb-ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="13" rx="2"/><path d="M8 21h8M12 16v5"/><rect x="9" y="9" width="6" height="4.5" rx="1"/><path d="M10.5 9V7.6a1.5 1.5 0 0 1 3 0V9"/></svg></span>E-BANKING CIA</a>
     </div>
     <div class="topbar-right">
       <div class="topbar-social">
@@ -829,12 +829,12 @@
   });
 
   var RULES = [
-    { k: ['bonjour','bonsoir','salut','hello','bjr'], a: "Bonjour ! Je suis là pour répondre à vos questions sur les services CIA : comptes, transferts, agences, carte, mobile ou e-banking. Que souhaitez-vous savoir ?" },
+    { k: ['bonjour','bonsoir','salut','hello','bjr'], a: "Bonjour ! Je suis là pour répondre à vos questions sur les services CIA : comptes, transferts, agences, carte ou e-banking. Que souhaitez-vous savoir ?" },
     { k: ['devenir client','ouvrir un compte','ouverture de compte','créer un compte'], a: "Pour devenir client CIA, rendez-vous dans l'une de nos agences avec une pièce d'identité valide. Notre équipe vous accompagne pour l'ouverture de votre compte le jour même. <a href=\"contact.html\">Voir nos coordonnées</a>." },
     { k: ['agence','agences','adresse','où êtes-vous','localisation','où vous trouver'], a: "CIA est présent à Brazzaville (Plateaux des 15 ans) et à Pointe-Noire (Rond-point Songolo et Port Autonome). <a href=\"nos-agences.html\">Voir toutes nos agences →</a>" },
     { k: ['transfert','envoyer de largent','envoyer de l\'argent','transfert national'], a: "Le Transfert National CIA vous permet d'envoyer de l'argent partout au Congo en quelques minutes, même si le destinataire n'a pas de compte bancaire. <a href=\"particuliers.html\">En savoir plus sur nos solutions particuliers →</a>" },
     { k: ['carte','carte prépayée','carte bancaire'], a: "La Carte Prépayée CIA fonctionne sans contact (NFC) et par QR Code, avec plusieurs designs disponibles. <a href=\"particuliers.html\">Découvrir la carte CIA →</a>" },
-    { k: ['mobile','application','app','téléphone portable'], a: "L'application CIA Mobile réunit le Transfert National, le Portefeuille électronique et les notifications en temps réel. <a href=\"cia-mobile.html\">Découvrir CIA Mobile →</a>" },
+    { k: ['mobile','application','app','téléphone portable'], a: "L'application CIA Mobile réunit le Transfert National, le Portefeuille électronique et les notifications en temps réel. Elle sera bientôt disponible sur Google Play et l'App Store." },
     { k: ['e-banking','en ligne','banque en ligne','internet banking'], a: "E-Banking CIA vous permet de consulter vos comptes et faire vos virements en ligne, 24h/24 et 7j/7. <a href=\"e-banking.html\">Découvrir E-Banking CIA →</a>" },
     { k: ['entreprise','entreprises','professionnel','trésorerie','tpe'], a: "CIA propose des solutions dédiées aux professionnels et entreprises : trésorerie, paiement des salaires, cash management. <a href=\"entreprises.html\">Voir nos solutions entreprises →</a>" },
     { k: ['contact','téléphone','numéro','email','mail','appeler'], a: "Vous pouvez nous joindre au (+242) 05 206 11 11 / (+242) 06 820 57 57 ou par email à <a href=\"mailto:contact@ciafinances.com\">contact@ciafinances.com</a>. <a href=\"contact.html\">Voir la page Contact →</a>" },
