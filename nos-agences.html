@@ -528,6 +528,35 @@
       <button type="button" class="ag-filter" data-city="pointe-noire">Pointe-Noire<span class="n">2</span></button>
     </div>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+    <style>
+      .ag-map-wrap{position:relative; border-radius:18px; overflow:hidden; border:1px solid #dfe5f2; box-shadow:0 18px 44px rgba(20,30,70,0.10); margin-bottom:34px; background:#e9eef7;}
+      #agMap{height:480px; width:100%; z-index:1;}
+      .ag-map-legend{position:absolute; right:16px; top:16px; z-index:500; background:#fff; border-radius:12px; padding:12px 16px; box-shadow:0 8px 24px rgba(20,30,70,0.15); font-size:0.82rem; color:#33405c;}
+      .ag-map-legend b{display:block; color:#151b2e; font-size:0.9rem; margin-bottom:4px;}
+      .ag-map-legend .dot{display:inline-block; width:10px; height:10px; border-radius:50%; background:var(--red); margin-right:6px; vertical-align:middle;}
+      .ag-pin{position:relative; width:38px; height:48px;}
+      .ag-pin .p{position:absolute; left:0; top:0; width:38px; height:38px; border-radius:50% 50% 50% 0; transform:rotate(-45deg); background:var(--red); border:3px solid #fff; box-shadow:0 6px 14px rgba(0,0,0,0.3);}
+      .ag-pin img{position:absolute; left:9px; top:9px; width:20px; height:20px; border-radius:50%; background:#fff; padding:2px; object-fit:contain;}
+      .ag-pin.active .p{background:var(--navy);}
+      .leaflet-popup-content-wrapper{border-radius:12px;}
+      .leaflet-popup-content{margin:14px 16px; font-family:inherit;}
+      .ag-pop .c{font-size:0.66rem; font-weight:800; letter-spacing:1.2px; text-transform:uppercase; color:var(--red);}
+      .ag-pop h4{font-size:0.98rem; font-weight:800; color:#151b2e; margin:3px 0 4px;}
+      .ag-pop p{font-size:0.82rem; color:#5c6577; margin:0 0 10px;}
+      .ag-pop .b{display:flex; gap:6px;}
+      .ag-pop .b a{flex:1; text-align:center; padding:7px 8px; border-radius:7px; font-weight:700; font-size:0.78rem;}
+      .ag-pop .b a.call{background:var(--red); color:#fff;}
+      .ag-pop .b a.map{border:1.5px solid #c9d4ee; color:var(--navy);}
+      .ag-card.focus{outline:3px solid var(--red); outline-offset:2px;}
+      .ag-card .ag-top{cursor:pointer;}
+      @media(max-width:640px){ #agMap{height:340px;} .ag-map-legend{right:10px; top:10px; padding:9px 12px;} }
+    </style>
+    <div class="ag-map-wrap">
+      <div id="agMap" role="region" aria-label="Carte des agences CIA"></div>
+      <div class="ag-map-legend"><b>Réseau CIA</b><span class="dot"></span>3 agences au Congo</div>
+    </div>
+
     <div class="ag-grid">
       <!-- Agence 1 -->
       <article class="ag-card" data-city="brazzaville">
@@ -613,18 +642,78 @@
   </div>
 </section>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
 (function(){
+  // Coordonnées des agences (à ajuster si besoin : latitude, longitude)
+  var AGENCES = [
+    { id:'bzv',  city:'brazzaville',  cityLabel:'Brazzaville',  name:'Agence de Brazzaville',      addr:'Plateaux des 15 ans, Brazzaville',           lat:-4.2565, lng:15.2640, q:'Plateaux+des+15+ans+Brazzaville+Congo' },
+    { id:'song', city:'pointe-noire', cityLabel:'Pointe-Noire', name:'Agence Rond-point Songolo',  addr:'Rond-point Songolo, Pointe-Noire',           lat:-4.7660, lng:11.8800, q:'Rond-point+Songolo+Pointe-Noire+Congo' },
+    { id:'port', city:'pointe-noire', cityLabel:'Pointe-Noire', name:'Agence Port Autonome',       addr:'Port Autonome de Pointe-Noire, Pointe-Noire', lat:-4.7870, lng:11.8380, q:'Port+Autonome+de+Pointe-Noire+Congo' }
+  ];
+
   var btns = document.querySelectorAll('.ag-filter');
   var cards = document.querySelectorAll('.ag-card');
+  cards.forEach(function(c, i){ if(AGENCES[i]) c.setAttribute('data-id', AGENCES[i].id); });
+
+  var map = null, markers = {};
+  function pinIcon(active){
+    return L.divIcon({ className:'', html:'<div class="ag-pin' + (active ? ' active' : '') + '"><span class="p"></span><img src="assets/cia-icon-mark.png" alt=""></div>', iconSize:[38,48], iconAnchor:[19,46], popupAnchor:[0,-44] });
+  }
+  function popupHtml(a){
+    return '<div class="ag-pop"><div class="c">' + a.cityLabel + '</div><h4>' + a.name + '</h4><p>' + a.addr + '<br>(+242) 05 206 11 11</p>' +
+      '<div class="b"><a class="call" href="tel:+242052061111">Appeler</a><a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=' + a.q + '">Itinéraire</a></div></div>';
+  }
+  function fit(list){
+    if(!map || !list.length) return;
+    if(list.length === 1){ map.flyTo([list[0].lat, list[0].lng], 14, {duration:0.8}); return; }
+    map.flyToBounds(L.latLngBounds(list.map(function(a){ return [a.lat, a.lng]; })), {padding:[60,60], maxZoom:13, duration:0.8});
+  }
+  function setActive(id){
+    AGENCES.forEach(function(a){ if(markers[a.id]) markers[a.id].setIcon(pinIcon(a.id === id)); });
+    cards.forEach(function(c){ c.classList.toggle('focus', c.getAttribute('data-id') === id); });
+  }
+  function focusAgence(id){
+    var a = AGENCES.filter(function(x){ return x.id === id; })[0];
+    if(!a || !map) return;
+    setActive(id);
+    map.flyTo([a.lat, a.lng], 15, {duration:0.8});
+    markers[id].openPopup();
+  }
+
+  if(window.L && document.getElementById('agMap')){
+    map = L.map('agMap', { scrollWheelZoom:false, zoomControl:true });
+    map.fitBounds(L.latLngBounds(AGENCES.map(function(a){ return [a.lat, a.lng]; })), {padding:[60,60], maxZoom:13});
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+      maxZoom:19, subdomains:'abcd',
+      attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
+    }).addTo(map);
+    AGENCES.forEach(function(a){
+      markers[a.id] = L.marker([a.lat, a.lng], { icon:pinIcon(false), title:a.name }).addTo(map).bindPopup(popupHtml(a));
+      markers[a.id].on('click', function(){ setActive(a.id); });
+    });
+    map.on('click', function(){ map.scrollWheelZoom.enable(); });
+  }
+
   btns.forEach(function(b){
     b.addEventListener('click', function(){
       btns.forEach(function(x){ x.classList.remove('active'); });
       b.classList.add('active');
       var c = b.getAttribute('data-city');
-      cards.forEach(function(card){
+      cards.forEach(function(card, i){
         card.classList.toggle('hide', c !== 'all' && card.getAttribute('data-city') !== c);
       });
+      setActive(null);
+      if(map) map.closePopup();
+      fit(AGENCES.filter(function(a){ return c === 'all' || a.city === c; }));
+    });
+  });
+
+  cards.forEach(function(card){
+    card.querySelector('.ag-top').addEventListener('click', function(){
+      focusAgence(card.getAttribute('data-id'));
+      var m = document.getElementById('agMap');
+      if(m) m.scrollIntoView({behavior:'smooth', block:'center'});
     });
   });
 })();
