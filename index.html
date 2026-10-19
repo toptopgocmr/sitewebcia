@@ -394,6 +394,43 @@
   .info-note{background:#fff8e6; border:1px solid #f1dfa8; color:#7a5b00; font-size:0.85rem; border-radius:10px; padding:14px 18px; margin-bottom:34px;}
 </style>
 
+<style>
+  /* ---- Produits différenciants ---- */
+  .np-head{display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:end; margin-bottom:36px;}
+  .np-head h2{font-size:2rem; font-weight:800; color:#151b2e; line-height:1.2;}
+  .np-head p{color:var(--grey-text); font-size:1.02rem;}
+  .fp-hero{display:grid; grid-template-columns:1fr 1.25fr; gap:40px; align-items:center; background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 70%); color:#fff; border-radius:26px; padding:48px; position:relative; overflow:hidden; box-shadow:0 24px 50px rgba(18,32,79,.22);}
+  .fp-hero::before{content:""; position:absolute; width:340px; height:340px; border-radius:50%; background:radial-gradient(circle,rgba(226,35,26,.45),rgba(226,35,26,0) 70%); left:-120px; bottom:-160px;}
+  .fp-copy{position:relative;}
+  .fp-badge{display:inline-flex; align-items:center; gap:6px; background:var(--red); color:#fff; font-size:0.72rem; font-weight:800; letter-spacing:1px; text-transform:uppercase; padding:6px 12px; border-radius:20px; margin-bottom:16px;}
+  .fp-copy h3{font-size:2.6rem; font-weight:800; line-height:1.1; margin-bottom:14px; letter-spacing:-0.5px;}
+  .fp-lead{color:rgba(255,255,255,.82); font-size:1.02rem; margin-bottom:26px;}
+  .fp-actions{display:flex; flex-wrap:wrap; gap:12px;}
+  .fp-ghost{border:2px solid rgba(255,255,255,.5); color:#fff; padding:12px 24px; border-radius:8px; font-weight:700; font-size:0.92rem; transition:background .2s;}
+  .fp-ghost:hover{background:rgba(255,255,255,.1);}
+  .fp-feats{position:relative; display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .fp-feat{display:flex; flex-direction:column; gap:12px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.14); border-radius:16px; padding:20px; transition:background .2s, transform .2s;}
+  .fp-feat:hover{background:rgba(255,255,255,.12); transform:translateY(-3px);}
+  .fp-feat-ic{width:44px; height:44px; border-radius:12px; background:#fff; color:var(--navy); display:flex; align-items:center; justify-content:center;}
+  .fp-feat h4{font-size:1rem; font-weight:800; margin-bottom:4px;}
+  .fp-feat p{font-size:0.88rem; color:rgba(255,255,255,.75);}
+  .np-sub{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin:54px 0 22px;}
+  .np-sub h3{font-size:1.35rem; font-weight:800; color:#151b2e;}
+  .np-sub span{color:var(--grey-text);}
+  .np-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:16px;}
+  .np-card{background:#fff; border:1px solid var(--border); border-radius:16px; padding:22px 20px; transition:transform .2s, box-shadow .2s, border-color .2s;}
+  .np-card:hover{transform:translateY(-4px); box-shadow:0 16px 32px rgba(28,47,120,.10); border-color:#cfd9f2;}
+  .np-top{display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;}
+  .np-ic{width:44px; height:44px; border-radius:12px; background:var(--lightblue); color:var(--navy); display:flex; align-items:center; justify-content:center; transition:background .2s, color .2s;}
+  .np-card:hover .np-ic{background:var(--navy); color:#fff;}
+  .np-cat{font-size:0.68rem; font-weight:800; letter-spacing:.8px; text-transform:uppercase; color:var(--grey-text);}
+  .np-card h4{font-size:1.02rem; font-weight:800; color:#151b2e; margin-bottom:6px; display:flex; flex-wrap:wrap; align-items:center; gap:6px;}
+  .np-new{font-size:0.62rem; font-weight:800; text-transform:uppercase; letter-spacing:.6px; background:#fde8e7; color:var(--red); padding:3px 7px; border-radius:10px;}
+  .np-card p{font-size:0.88rem; color:var(--grey-text);}
+  @media(max-width:1100px){ .np-grid{grid-template-columns:repeat(3,1fr);} .fp-hero{grid-template-columns:1fr;} }
+  @media(max-width:760px){ .np-head{grid-template-columns:1fr; gap:12px;} .np-head h2{font-size:1.6rem;} .np-grid{grid-template-columns:repeat(2,1fr);} .fp-hero{padding:30px 22px;} .fp-copy h3{font-size:2rem;} }
+  @media(max-width:520px){ .fp-feats{grid-template-columns:1fr;} .np-grid{gap:10px;} .np-card{padding:16px 14px;} .np-cat{display:none;} .np-ic{width:38px; height:38px;} .np-card h4{font-size:0.95rem;} .np-card p{font-size:0.82rem;} .fp-feat{flex-direction:row; padding:16px;} .fp-feat-ic{flex:0 0 40px; width:40px; height:40px;} }
+</style>
 </head>
 <body data-page="accueil">
 
@@ -609,16 +646,82 @@
 
 <section class="segment" id="nouveautes">
   <div class="wrap">
-    <span class="seg-tag">À lancer en priorité</span>
-    <h2 style="font-size:1.7rem; font-weight:800; color:#151b2e; margin-bottom:10px;">Nos produits différenciants</h2>
-    <p style="color:var(--grey-text); max-width:600px; margin-bottom:34px;">Les prochaines briques digitales du parcours CIA.</p>
-    <div class="diff-grid">
-      <div class="diff-card"><h4>Wallet Microfinance</h4><p>Un portefeuille électronique maison, propre à CIA.</p></div>
-      <div class="diff-card"><h4>QR Pay Congo</h4><p>Paiement par QR Code chez les commerçants.</p></div>
-      <div class="diff-card"><h4>PayLink</h4><p>Création d'un lien de paiement envoyé par SMS ou WhatsApp.</p></div>
-      <div class="diff-card"><h4>School Pay</h4><p>Paiement simplifié des frais de scolarité.</p></div>
-      <div class="diff-card"><h4>Market Pay</h4><p>Solution dédiée aux marchés, boutiques et vendeurs.</p></div>
-      <div class="diff-card"><h4>Diaspora Transfer</h4><p>Réception rapide des fonds envoyés depuis l'Europe, les États-Unis ou l'Afrique.</p></div>
+    <div class="np-head">
+      <div>
+        <span class="seg-tag">À lancer en priorité</span>
+        <h2>Nos produits différenciants</h2>
+      </div>
+      <p>Les briques digitales du parcours CIA : payer, encaisser, transférer et épargner, simplement, depuis votre téléphone ou en agence.</p>
+    </div>
+
+    <div class="fp-hero">
+      <div class="fp-copy">
+        <span class="fp-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg> Produit phare</span>
+        <h3>FlashPay</h3>
+        <p class="fp-lead">La solution de paiement numérique pour le e-commerce, les transferts internationaux et la gestion de vos flux d'argent, pour les marchands, les commerces et les utilisateurs.</p>
+        <div class="fp-actions">
+          <a href="contact.html" class="btn-cta">Découvrir FlashPay <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="entreprises.html" class="fp-ghost">Offre marchands</a>
+        </div>
+      </div>
+      <div class="fp-feats"><div class="fp-feat"><span class="fp-feat-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.6 12.2a1.5 1.5 0 0 0 1.5 1.2h9a1.5 1.5 0 0 0 1.4-1.1L22 8H6"/></svg></span><div><h4>Paiement e-commerce</h4><p>Encaissez vos ventes en ligne : boutiques, sites et applications.</p></div></div><div class="fp-feat"><span class="fp-feat-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18"/></svg></span><div><h4>Transferts internationaux</h4><p>Envoyez des fonds vers des comptes mobile money ou bancaires.</p></div></div><div class="fp-feat"><span class="fp-feat-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h13l-3-3"/><path d="M20 17H7l3 3"/></svg></span><div><h4>Collecte & décaissement</h4><p>Recevez et redistribuez des fonds pour marchands, commerces et utilisateurs.</p></div></div><div class="fp-feat"><span class="fp-feat-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="5" rx="1"/><path d="M5 13v8h14v-8M12 8v13"/><path d="M12 8S10.5 3 8 4s0 4 4 4Zm0 0s1.5-5 4-4 0 4-4 4Z"/></svg></span><div><h4>Cagnotte</h4><p>Créez une cagnotte et collectez les contributions de vos proches en quelques clics.</p></div></div></div>
+    </div>
+
+    <div class="np-sub">
+      <h3>Et aussi</h3>
+      <span>D'autres produits et services pour vos besoins du quotidien</span>
+    </div>
+    <div class="np-grid">
+      <article class="np-card">
+        <div class="np-top"><span class="np-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7a2 2 0 0 1 2-2h12v4"/><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M16 13.5h2"/></svg></span><span class="np-cat">Paiement</span></div>
+        <h4>Wallet Microfinance</h4>
+        <p>Un portefeuille électronique maison, propre à CIA, pour payer, envoyer et épargner.</p>
+      </article>
+      <article class="np-card">
+        <div class="np-top"><span class="np-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/></svg></span><span class="np-cat">Paiement</span></div>
+        <h4>QR Pay Congo</h4>
+        <p>Paiement par QR Code chez les commerçants, sans espèces ni terminal.</p>
+      </article>
+      <article class="np-card">
+        <div class="np-top"><span class="np-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></span><span class="np-cat">Paiement</span></div>
+        <h4>PayLink</h4>
+        <p>Un lien de paiement envoyé par SMS ou WhatsApp, réglé en un clic.</p>
+      </article>
+      <article class="np-card">
+        <div class="np-top"><span class="np-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5L2 9Z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5"/><path d="M22 9v6"/></svg></span><span class="np-cat">Paiement</span></div>
+        <h4>School Pay</h4>
+        <p>Paiement simplifié et traçable des frais de scolarité.</p>
+      </article>
+      <article class="np-card">
+        <div class="np-top"><span class="np-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l1.5-5h15L21 9"/><path d="M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"/><path d="M5 12v9h14v-9"/><path d="M10 21v-5h4v5"/></svg></span><span class="np-cat">Commerçants</span></div>
+        <h4>Market Pay</h4>
+        <p>Solution dédiée aux marchés, boutiques et vendeurs.</p>
+      </article>
+      <article class="np-card">
+        <div class="np-top"><span class="np-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5Z"/></svg></span><span class="np-cat">Transfert</span></div>
+        <h4>Diaspora Transfer</h4>
+        <p>Réception rapide des fonds envoyés depuis l'Europe, les États-Unis ou l'Afrique.</p>
+      </article>
+      <article class="np-card">
+        <div class="np-top"><span class="np-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12v20l-3-2-3 2-3-2-3 2Z"/><path d="M9 7h6M9 11h6M9 15h4"/></svg></span><span class="np-cat">Paiement</span></div>
+        <h4>Bill Pay <span class="np-new">Nouveau</span></h4>
+        <p>Paiement des factures (eau, électricité, internet, abonnements) depuis votre mobile.</p>
+      </article>
+      <article class="np-card">
+        <div class="np-top"><span class="np-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M15 15.5a5 5 0 0 1 6 4.5"/></svg></span><span class="np-cat">Épargne</span></div>
+        <h4>Tontine Digitale <span class="np-new">Nouveau</span></h4>
+        <p>L'épargne collective traditionnelle, sécurisée et suivie en ligne.</p>
+      </article>
+      <article class="np-card">
+        <div class="np-top"><span class="np-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="9" cy="7" rx="6" ry="3"/><path d="M3 7v5c0 1.7 2.7 3 6 3s6-1.3 6-3V7"/><path d="M15 11.5c3.4.2 6 1.4 6 3V17c0 1.7-2.7 3-6 3-2 0-3.8-.5-4.9-1.2"/></svg></span><span class="np-cat">Crédit</span></div>
+        <h4>Crédit Express <span class="np-new">Nouveau</span></h4>
+        <p>Microcrédit rapide pour particuliers et petits commerces, avec réponse simplifiée.</p>
+      </article>
+      <article class="np-card">
+        <div class="np-top"><span class="np-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></span><span class="np-cat">Entreprises</span></div>
+        <h4>Salary Pay <span class="np-new">Nouveau</span></h4>
+        <p>Versement des salaires et primes directement sur les comptes ou portefeuilles des employés.</p>
+      </article>
     </div>
   </div>
 </section>
