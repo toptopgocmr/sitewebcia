@@ -399,37 +399,53 @@
   .np-head{display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:end; margin-bottom:36px;}
   .np-head h2{font-size:2rem; font-weight:800; color:#151b2e; line-height:1.2;}
   .np-head p{color:var(--grey-text); font-size:1.02rem;}
-  .fp-hero{display:grid; grid-template-columns:1fr 1.25fr; gap:40px; align-items:center; background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 70%); color:#fff; border-radius:26px; padding:48px; position:relative; overflow:hidden; box-shadow:0 24px 50px rgba(18,32,79,.22);}
-  .fp-hero::before{content:""; position:absolute; width:340px; height:340px; border-radius:50%; background:radial-gradient(circle,rgba(226,35,26,.45),rgba(226,35,26,0) 70%); left:-120px; bottom:-160px;}
+  .fp-hero{display:grid; grid-template-columns:1fr 1.25fr; gap:44px; align-items:center; background:radial-gradient(circle at 0% 100%, rgba(255,0,0,.28) 0, rgba(255,0,0,0) 38%), linear-gradient(135deg,#101a47 0%,#1e2ea8 100%); color:#fff; border-radius:26px; padding:52px; position:relative; overflow:hidden; box-shadow:0 24px 50px rgba(18,32,79,.25);}
+  .fp-watermark{position:absolute; width:420px; right:-90px; top:-110px; opacity:.06; pointer-events:none; filter:grayscale(1) brightness(3);}
   .fp-copy{position:relative;}
-  .fp-badge{display:inline-flex; align-items:center; gap:6px; background:var(--red); color:#fff; font-size:0.72rem; font-weight:800; letter-spacing:1px; text-transform:uppercase; padding:6px 12px; border-radius:20px; margin-bottom:16px;}
-  .fp-copy h3{font-size:2.6rem; font-weight:800; line-height:1.1; margin-bottom:14px; letter-spacing:-0.5px;}
-  .fp-lead{color:rgba(255,255,255,.82); font-size:1.02rem; margin-bottom:26px;}
+  .fp-badge{display:inline-flex; align-items:center; gap:6px; background:#ff1f1f; color:#fff; font-size:0.72rem; font-weight:800; letter-spacing:1px; text-transform:uppercase; padding:6px 12px; border-radius:20px; margin-bottom:18px;}
+  .fp-brand{display:flex; align-items:center; gap:16px; margin-bottom:16px;}
+  .fp-logo{width:68px; height:68px; flex:0 0 68px; border-radius:18px; background:#fff; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 26px rgba(0,0,0,.25);}
+  .fp-logo img{width:44px; height:44px; object-fit:contain;}
+  .fp-copy h3{font-size:2.7rem; font-weight:800; line-height:1; letter-spacing:-0.5px;}
+  .fp-copy h3 span{color:#ff4d4d;}
+  .fp-lead{color:rgba(255,255,255,.84); font-size:1.03rem; margin-bottom:26px;}
   .fp-actions{display:flex; flex-wrap:wrap; gap:12px;}
   .fp-ghost{border:2px solid rgba(255,255,255,.5); color:#fff; padding:12px 24px; border-radius:8px; font-weight:700; font-size:0.92rem; transition:background .2s;}
   .fp-ghost:hover{background:rgba(255,255,255,.1);}
   .fp-feats{position:relative; display:grid; grid-template-columns:1fr 1fr; gap:14px;}
-  .fp-feat{display:flex; flex-direction:column; gap:12px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.14); border-radius:16px; padding:20px; transition:background .2s, transform .2s;}
-  .fp-feat:hover{background:rgba(255,255,255,.12); transform:translateY(-3px);}
-  .fp-feat-ic{width:44px; height:44px; border-radius:12px; background:#fff; color:var(--navy); display:flex; align-items:center; justify-content:center;}
-  .fp-feat h4{font-size:1rem; font-weight:800; margin-bottom:4px;}
-  .fp-feat p{font-size:0.88rem; color:rgba(255,255,255,.75);}
-  .np-sub{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin:54px 0 22px;}
-  .np-sub h3{font-size:1.35rem; font-weight:800; color:#151b2e;}
-  .np-sub span{color:var(--grey-text);}
+  .fp-feat{display:flex; flex-direction:column; gap:14px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.14); border-radius:18px; padding:22px; transition:background .2s, transform .2s, border-color .2s;}
+  .fp-feat:hover{background:rgba(255,255,255,.12); transform:translateY(-3px); border-color:rgba(255,255,255,.28);}
+  .fp-feat-ic{width:52px; height:52px; border-radius:15px; color:#fff; display:flex; align-items:center; justify-content:center; background:linear-gradient(140deg,#ff4040 0%,#d9121a 100%); box-shadow:0 8px 20px rgba(255,0,0,.32), inset 0 1px 0 rgba(255,255,255,.35);}
+  .fp-feat:nth-child(2) .fp-feat-ic, .fp-feat:nth-child(3) .fp-feat-ic{background:linear-gradient(140deg,#ffffff 0%,#dfe5ff 100%); color:#1e2ea8; box-shadow:0 8px 20px rgba(0,0,0,.22), inset 0 1px 0 #fff;}
+  .fp-feat h4{font-size:1.02rem; font-weight:800; margin-bottom:4px;}
+  .fp-feat p{font-size:0.88rem; color:rgba(255,255,255,.76);}
+
+  .np-sub{display:flex; justify-content:space-between; align-items:flex-end; gap:20px; flex-wrap:wrap; margin:58px 0 24px;}
+  .np-sub h3{font-size:1.45rem; font-weight:800; color:#151b2e;}
+  .np-sub p{color:var(--grey-text);}
+  .np-chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .np-chip{border:1px solid var(--border); background:#fff; color:#2a3346; font:inherit; font-size:0.85rem; font-weight:700; padding:8px 16px; border-radius:30px; cursor:pointer; transition:all .2s;}
+  .np-chip:hover{border-color:var(--navy); color:var(--navy);}
+  .np-chip.is-active{background:var(--navy); border-color:var(--navy); color:#fff;}
   .np-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:16px;}
-  .np-card{background:#fff; border:1px solid var(--border); border-radius:16px; padding:22px 20px; transition:transform .2s, box-shadow .2s, border-color .2s;}
-  .np-card:hover{transform:translateY(-4px); box-shadow:0 16px 32px rgba(28,47,120,.10); border-color:#cfd9f2;}
-  .np-top{display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;}
-  .np-ic{width:44px; height:44px; border-radius:12px; background:var(--lightblue); color:var(--navy); display:flex; align-items:center; justify-content:center; transition:background .2s, color .2s;}
-  .np-card:hover .np-ic{background:var(--navy); color:#fff;}
-  .np-cat{font-size:0.68rem; font-weight:800; letter-spacing:.8px; text-transform:uppercase; color:var(--grey-text);}
-  .np-card h4{font-size:1.02rem; font-weight:800; color:#151b2e; margin-bottom:6px; display:flex; flex-wrap:wrap; align-items:center; gap:6px;}
-  .np-new{font-size:0.62rem; font-weight:800; text-transform:uppercase; letter-spacing:.6px; background:#fde8e7; color:var(--red); padding:3px 7px; border-radius:10px;}
-  .np-card p{font-size:0.88rem; color:var(--grey-text);}
-  @media(max-width:1100px){ .np-grid{grid-template-columns:repeat(3,1fr);} .fp-hero{grid-template-columns:1fr;} }
-  @media(max-width:760px){ .np-head{grid-template-columns:1fr; gap:12px;} .np-head h2{font-size:1.6rem;} .np-grid{grid-template-columns:repeat(2,1fr);} .fp-hero{padding:30px 22px;} .fp-copy h3{font-size:2rem;} }
-  @media(max-width:520px){ .fp-feats{grid-template-columns:1fr;} .np-grid{gap:10px;} .np-card{padding:16px 14px;} .np-cat{display:none;} .np-ic{width:38px; height:38px;} .np-card h4{font-size:0.95rem;} .np-card p{font-size:0.82rem;} .fp-feat{flex-direction:row; padding:16px;} .fp-feat-ic{flex:0 0 40px; width:40px; height:40px;} }
+  .np-card{--c:#1c2f78; --bg:#eaf0ff; position:relative; display:flex; flex-direction:column; background:#fff; border:1px solid var(--border); border-radius:18px; padding:24px 22px 20px; overflow:hidden; transition:transform .25s, box-shadow .25s, border-color .25s;}
+  .np-card[hidden]{display:none;}
+  .np-card::before{content:""; position:absolute; left:0; right:0; top:0; height:3px; background:var(--c); opacity:0; transition:opacity .25s;}
+  .np-card:hover{transform:translateY(-4px); box-shadow:0 18px 34px rgba(28,47,120,.11); border-color:transparent;}
+  .np-card:hover::before{opacity:1;}
+  .np-merch{--c:#c2410c; --bg:#fff1e6;} .np-tr{--c:#0f766e; --bg:#e3f6f3;} .np-sav{--c:#7c3aed; --bg:#f1ebff;} .np-biz{--c:#0369a1; --bg:#e3f2fc;}
+  .np-ic{width:52px; height:52px; border-radius:15px; background:var(--bg); color:var(--c); display:flex; align-items:center; justify-content:center; margin-bottom:18px; transition:background .25s, color .25s, transform .25s;}
+  .np-card:hover .np-ic{background:var(--c); color:#fff; transform:rotate(-6deg) scale(1.04);}
+  .np-cat{font-size:0.68rem; font-weight:800; letter-spacing:.9px; text-transform:uppercase; color:var(--c); margin-bottom:6px;}
+  .np-card h4{font-size:1.05rem; font-weight:800; color:#151b2e; margin-bottom:8px;}
+  .np-card p{font-size:0.88rem; color:var(--grey-text); flex:1;}
+  .np-more{display:inline-flex; align-items:center; gap:6px; margin-top:16px; font-size:0.85rem; font-weight:700; color:var(--c);}
+  .np-more svg{transition:transform .2s;} .np-card:hover .np-more svg{transform:translateX(4px);}
+  .np-new{position:absolute; top:16px; right:16px; font-size:0.62rem; font-weight:800; text-transform:uppercase; letter-spacing:.6px; background:#ff1f1f; color:#fff; padding:4px 8px; border-radius:10px;}
+  @media(max-width:1180px){ .np-grid{grid-template-columns:repeat(4,1fr);} }
+  @media(max-width:1100px){ .fp-hero{grid-template-columns:1fr;} .np-grid{grid-template-columns:repeat(3,1fr);} }
+  @media(max-width:760px){ .np-head{grid-template-columns:1fr; gap:12px;} .np-head h2{font-size:1.6rem;} .np-grid{grid-template-columns:repeat(2,1fr);} .fp-hero{padding:30px 22px;} .fp-copy h3{font-size:2.1rem;} .fp-logo{width:56px; height:56px; flex-basis:56px;} .fp-logo img{width:36px; height:36px;} .np-chips{flex-wrap:nowrap; overflow-x:auto; width:100%; padding-bottom:4px;} .np-chip{white-space:nowrap;} }
+  @media(max-width:520px){ .fp-feats{grid-template-columns:1fr;} .fp-feat{flex-direction:row; padding:16px;} .fp-feat-ic{flex:0 0 46px; width:46px; height:46px;} .np-grid{gap:10px;} .np-card{padding:16px 14px;} .np-ic{width:42px; height:42px; margin-bottom:12px;} .np-ic svg{width:22px; height:22px;} .np-card h4{font-size:0.95rem;} .np-card p{font-size:0.82rem;} .np-more{display:none;} .np-new{top:12px; right:12px;} }
 </style>
 </head>
 <body data-page="accueil">
@@ -655,76 +671,123 @@
     </div>
 
     <div class="fp-hero">
+      <img src="assets/flashpay-logo.png" alt="" class="fp-watermark" aria-hidden="true">
       <div class="fp-copy">
-        <span class="fp-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg> Produit phare</span>
-        <h3>FlashPay</h3>
+        <span class="fp-badge"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg> Produit phare</span>
+        <div class="fp-brand">
+          <span class="fp-logo"><img src="assets/flashpay-logo.png" alt="Logo FlashPay"></span>
+          <h3>Flash<span>Pay</span></h3>
+        </div>
         <p class="fp-lead">La solution de paiement numérique pour le e-commerce, les transferts internationaux et la gestion de vos flux d'argent, pour les marchands, les commerces et les utilisateurs.</p>
         <div class="fp-actions">
-          <a href="contact.html" class="btn-cta">Découvrir FlashPay <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="contact.html" class="btn-cta">Découvrir FlashPay <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           <a href="entreprises.html" class="fp-ghost">Offre marchands</a>
         </div>
       </div>
-      <div class="fp-feats"><div class="fp-feat"><span class="fp-feat-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.6 12.2a1.5 1.5 0 0 0 1.5 1.2h9a1.5 1.5 0 0 0 1.4-1.1L22 8H6"/></svg></span><div><h4>Paiement e-commerce</h4><p>Encaissez vos ventes en ligne : boutiques, sites et applications.</p></div></div><div class="fp-feat"><span class="fp-feat-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18"/></svg></span><div><h4>Transferts internationaux</h4><p>Envoyez des fonds vers des comptes mobile money ou bancaires.</p></div></div><div class="fp-feat"><span class="fp-feat-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h13l-3-3"/><path d="M20 17H7l3 3"/></svg></span><div><h4>Collecte & décaissement</h4><p>Recevez et redistribuez des fonds pour marchands, commerces et utilisateurs.</p></div></div><div class="fp-feat"><span class="fp-feat-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="5" rx="1"/><path d="M5 13v8h14v-8M12 8v13"/><path d="M12 8S10.5 3 8 4s0 4 4 4Zm0 0s1.5-5 4-4 0 4-4 4Z"/></svg></span><div><h4>Cagnotte</h4><p>Créez une cagnotte et collectez les contributions de vos proches en quelques clics.</p></div></div></div>
+      <div class="fp-feats"><div class="fp-feat"><span class="fp-feat-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2.2l2.2 10.2a1.6 1.6 0 0 0 1.6 1.3h8.4a1.6 1.6 0 0 0 1.5-1.1L21 8H6.1"/><path d="M9 8h12l-1.9 6.4" fill="currentColor" fill-opacity=".22" stroke="none"/><circle cx="9.5" cy="19.5" r="1.5"/><circle cx="17.5" cy="19.5" r="1.5"/><path d="M11 11.2l1.6 1.6 3-3.2"/></svg></span><div><h4>Paiement e-commerce</h4><p>Encaissez vos ventes en ligne : boutiques, sites et applications.</p></div></div><div class="fp-feat"><span class="fp-feat-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="currentColor" fill-opacity=".18"/><circle cx="12" cy="12" r="9"/><path d="M3.5 9h17M3.5 15h17"/><path d="M12 3c2.5 2.7 3.6 5.7 3.6 9S14.5 18.3 12 21c-2.5-2.7-3.6-5.7-3.6-9S9.5 5.7 12 3Z"/></svg></span><div><h4>Transferts internationaux</h4><p>Envoyez des fonds vers des comptes mobile money ou bancaires.</p></div></div><div class="fp-feat"><span class="fp-feat-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="13" height="9" rx="2" fill="currentColor" fill-opacity=".18"/><rect x="2.5" y="6" width="13" height="9" rx="2"/><circle cx="9" cy="10.5" r="2"/><path d="M18 9.5h3.5M19.8 7.8l1.7 1.7-1.7 1.7"/><path d="M21.5 16.5H8.5M10.2 14.8l-1.7 1.7 1.7 1.7"/></svg></span><div><h4>Collecte & décaissement</h4><p>Recevez et redistribuez des fonds pour marchands, commerces et utilisateurs.</p></div></div><div class="fp-feat"><span class="fp-feat-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 10h14l-1.2 8.4A2 2 0 0 1 15.8 20H8.2a2 2 0 0 1-2-1.6Z" fill="currentColor" fill-opacity=".18"/><path d="M5 10h14l-1.2 8.4A2 2 0 0 1 15.8 20H8.2a2 2 0 0 1-2-1.6Z"/><path d="M3.5 10h17"/><circle cx="12" cy="5.5" r="2.5"/><path d="M12 13v4M10.3 14.5h3.4"/></svg></span><div><h4>Cagnotte</h4><p>Créez une cagnotte et collectez les contributions de vos proches en quelques clics.</p></div></div></div>
     </div>
 
     <div class="np-sub">
-      <h3>Et aussi</h3>
-      <span>D'autres produits et services pour vos besoins du quotidien</span>
+      <div>
+        <h3>Et aussi</h3>
+        <p>D'autres produits et services pour vos besoins du quotidien</p>
+      </div>
+      <div class="np-chips" role="tablist" aria-label="Filtrer les produits"><button type="button" class="np-chip is-active" data-filter="all">Tous</button><button type="button" class="np-chip" data-filter="pay">Paiement</button><button type="button" class="np-chip" data-filter="merch">Commerçants</button><button type="button" class="np-chip" data-filter="tr">Transfert</button><button type="button" class="np-chip" data-filter="sav">Épargne & crédit</button><button type="button" class="np-chip" data-filter="biz">Entreprises</button></div>
     </div>
-    <div class="np-grid">
-      <article class="np-card">
-        <div class="np-top"><span class="np-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7a2 2 0 0 1 2-2h12v4"/><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M16 13.5h2"/></svg></span><span class="np-cat">Paiement</span></div>
+    <div class="np-grid" id="npGrid">
+      <article class="np-card np-pay" data-cat="pay">
+        
+        <span class="np-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7.5V6a2 2 0 0 1 2-2h11v3.5"/><rect x="3" y="7.5" width="18" height="12.5" rx="2.5" fill="currentColor" fill-opacity=".14"/><rect x="3" y="7.5" width="18" height="12.5" rx="2.5"/><path d="M21 11.5h-4a2 2 0 0 0 0 4h4"/><circle cx="17" cy="13.5" r=".6" fill="currentColor"/></svg></span>
+        <span class="np-cat">Paiement</span>
         <h4>Wallet Microfinance</h4>
         <p>Un portefeuille électronique maison, propre à CIA, pour payer, envoyer et épargner.</p>
+        <a href="contact.html" class="np-more">En savoir plus <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </article>
-      <article class="np-card">
-        <div class="np-top"><span class="np-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/></svg></span><span class="np-cat">Paiement</span></div>
+      <article class="np-card np-pay" data-cat="pay">
+        
+        <span class="np-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5" fill="currentColor" fill-opacity=".14"/><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5" fill="currentColor" fill-opacity=".14"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5" fill="currentColor" fill-opacity=".14"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 14h3v3M21 14v1M14 20v1M17.5 21H21v-3.5"/></svg></span>
+        <span class="np-cat">Paiement</span>
         <h4>QR Pay Congo</h4>
         <p>Paiement par QR Code chez les commerçants, sans espèces ni terminal.</p>
+        <a href="contact.html" class="np-more">En savoir plus <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </article>
-      <article class="np-card">
-        <div class="np-top"><span class="np-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></span><span class="np-cat">Paiement</span></div>
+      <article class="np-card np-pay" data-cat="pay">
+        
+        <span class="np-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/><circle cx="19" cy="19" r="2.5" fill="currentColor" fill-opacity=".25" stroke="none"/></svg></span>
+        <span class="np-cat">Paiement</span>
         <h4>PayLink</h4>
         <p>Un lien de paiement envoyé par SMS ou WhatsApp, réglé en un clic.</p>
+        <a href="contact.html" class="np-more">En savoir plus <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </article>
-      <article class="np-card">
-        <div class="np-top"><span class="np-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5L2 9Z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5"/><path d="M22 9v6"/></svg></span><span class="np-cat">Paiement</span></div>
+      <article class="np-card np-pay" data-cat="pay">
+        <span class="np-new">Nouveau</span>
+        <span class="np-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2.5h12v19l-3-2-3 2-3-2-3 2Z" fill="currentColor" fill-opacity=".14"/><path d="M6 2.5h12v19l-3-2-3 2-3-2-3 2Z"/><path d="M9 7h6M9 11h6M9 15h3.5"/></svg></span>
+        <span class="np-cat">Paiement</span>
+        <h4>Bill Pay</h4>
+        <p>Réglez vos factures (eau, électricité, internet, abonnements) depuis votre mobile.</p>
+        <a href="contact.html" class="np-more">En savoir plus <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+      <article class="np-card np-pay" data-cat="pay">
+        
+        <span class="np-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5Z" fill="currentColor" fill-opacity=".14"/><path d="M2 9l10-5 10 5-10 5Z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5"/><path d="M22 9v6"/></svg></span>
+        <span class="np-cat">Paiement</span>
         <h4>School Pay</h4>
         <p>Paiement simplifié et traçable des frais de scolarité.</p>
+        <a href="contact.html" class="np-more">En savoir plus <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </article>
-      <article class="np-card">
-        <div class="np-top"><span class="np-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l1.5-5h15L21 9"/><path d="M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"/><path d="M5 12v9h14v-9"/><path d="M10 21v-5h4v5"/></svg></span><span class="np-cat">Commerçants</span></div>
+      <article class="np-card np-merch" data-cat="merch">
+        
+        <span class="np-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l1.5-5h15L21 9" fill="currentColor" fill-opacity=".14"/><path d="M3 9l1.5-5h15L21 9"/><path d="M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"/><path d="M5 12v9h14v-9"/><path d="M10 21v-5h4v5"/></svg></span>
+        <span class="np-cat">Commerçants</span>
         <h4>Market Pay</h4>
         <p>Solution dédiée aux marchés, boutiques et vendeurs.</p>
+        <a href="contact.html" class="np-more">En savoir plus <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </article>
-      <article class="np-card">
-        <div class="np-top"><span class="np-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5Z"/></svg></span><span class="np-cat">Transfert</span></div>
+      <article class="np-card np-tr" data-cat="tr">
+        
+        <span class="np-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="currentColor" fill-opacity=".12"/><path d="M12 3a9 9 0 1 0 9 9"/><path d="M15 3.5h5.5V9"/><path d="M20.5 3.5 13 11"/><path d="M8 13l3 3 1.5-1.5"/></svg></span>
+        <span class="np-cat">Transfert</span>
         <h4>Diaspora Transfer</h4>
         <p>Réception rapide des fonds envoyés depuis l'Europe, les États-Unis ou l'Afrique.</p>
+        <a href="contact.html" class="np-more">En savoir plus <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </article>
-      <article class="np-card">
-        <div class="np-top"><span class="np-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12v20l-3-2-3 2-3-2-3 2Z"/><path d="M9 7h6M9 11h6M9 15h4"/></svg></span><span class="np-cat">Paiement</span></div>
-        <h4>Bill Pay <span class="np-new">Nouveau</span></h4>
-        <p>Paiement des factures (eau, électricité, internet, abonnements) depuis votre mobile.</p>
-      </article>
-      <article class="np-card">
-        <div class="np-top"><span class="np-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M15 15.5a5 5 0 0 1 6 4.5"/></svg></span><span class="np-cat">Épargne</span></div>
-        <h4>Tontine Digitale <span class="np-new">Nouveau</span></h4>
+      <article class="np-card np-sav" data-cat="sav">
+        <span class="np-new">Nouveau</span>
+        <span class="np-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2" fill="currentColor" fill-opacity=".2"/><circle cx="12" cy="12" r="3.2"/><circle cx="12" cy="3.8" r="1.8"/><circle cx="19.2" cy="16" r="1.8"/><circle cx="4.8" cy="16" r="1.8"/><path d="M12 5.6v3.2M17.6 15l-2.8-1.6M6.4 15l2.8-1.6"/></svg></span>
+        <span class="np-cat">Épargne & crédit</span>
+        <h4>Tontine Digitale</h4>
         <p>L'épargne collective traditionnelle, sécurisée et suivie en ligne.</p>
+        <a href="contact.html" class="np-more">En savoir plus <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </article>
-      <article class="np-card">
-        <div class="np-top"><span class="np-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="9" cy="7" rx="6" ry="3"/><path d="M3 7v5c0 1.7 2.7 3 6 3s6-1.3 6-3V7"/><path d="M15 11.5c3.4.2 6 1.4 6 3V17c0 1.7-2.7 3-6 3-2 0-3.8-.5-4.9-1.2"/></svg></span><span class="np-cat">Crédit</span></div>
-        <h4>Crédit Express <span class="np-new">Nouveau</span></h4>
+      <article class="np-card np-sav" data-cat="sav">
+        <span class="np-new">Nouveau</span>
+        <span class="np-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l5-5 4 3 8-8" /><path d="M15 7h5v5"/><path d="M3 21h18" /><path d="M3 17l5-5 4 3 8-8v14H3Z" fill="currentColor" fill-opacity=".14" stroke="none"/></svg></span>
+        <span class="np-cat">Épargne & crédit</span>
+        <h4>Crédit Express</h4>
         <p>Microcrédit rapide pour particuliers et petits commerces, avec réponse simplifiée.</p>
+        <a href="contact.html" class="np-more">En savoir plus <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </article>
-      <article class="np-card">
-        <div class="np-top"><span class="np-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></span><span class="np-cat">Entreprises</span></div>
-        <h4>Salary Pay <span class="np-new">Nouveau</span></h4>
-        <p>Versement des salaires et primes directement sur les comptes ou portefeuilles des employés.</p>
+      <article class="np-card np-biz" data-cat="biz">
+        <span class="np-new">Nouveau</span>
+        <span class="np-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2.5" fill="currentColor" fill-opacity=".14"/><rect x="2" y="5" width="20" height="14" rx="2.5"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9v.01M18 15v.01"/></svg></span>
+        <span class="np-cat">Entreprises</span>
+        <h4>Salary Pay</h4>
+        <p>Versement des salaires et primes sur les comptes ou portefeuilles des employés.</p>
+        <a href="contact.html" class="np-more">En savoir plus <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </article>
     </div>
   </div>
 </section>
+<script>
+(function(){
+  var chips=document.querySelectorAll('#nouveautes .np-chip'), cards=document.querySelectorAll('#npGrid .np-card');
+  chips.forEach(function(ch){ ch.addEventListener('click',function(){
+    chips.forEach(function(c){c.classList.remove('is-active');}); ch.classList.add('is-active');
+    var f=ch.getAttribute('data-filter');
+    cards.forEach(function(card){ card.hidden = !(f==='all' || card.getAttribute('data-cat')===f); });
+  }); });
+})();
+</script>
 
 
 <section class="segment tint">
